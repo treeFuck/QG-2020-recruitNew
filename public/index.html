@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>2020rcnew</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but 2020rcnew doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" href="<%= BASE_URL %>qglogo.png">
+  <title>QG Studio</title>
+</head>
+<script>
+  function resizeRem() {
+    var whdef;
+    if (window.innerWidth > 1024) {
+      whdef = 100 / 1920;
+    } else if (window.innerWidth > 720) {
+      whdef = 100 / 1024;
+    } else {
+      whdef = 100 / 360;
+    }
+    // 根据设计稿的宽高和屏幕的宽度定义Rem的值
+    var wH = window.innerHeight;
+    var wW = window.innerWidth;
+    var rem = wW * whdef;
+    window.rem = rem;
+    document.documentElement.style.fontSize = rem + 'px';
+  }
+  window.onresize = resizeRem;
+  resizeRem();
+</script>
+
+<body>
+  <noscript>
+    <strong>We're sorry but 2020rcnew doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
