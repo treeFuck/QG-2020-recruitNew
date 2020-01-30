@@ -7,7 +7,6 @@
 }
 // 手机
 @media only screen and (max-width: 740px) {
-
 }
 .homepage {
   width: 100%;
@@ -17,12 +16,11 @@
 }
 </style>
 <template>
-    <div class="homepage">
-      <h1>主页</h1>
-    </div>
+  <div class="homepage page">
+    <h1>主页</h1>
+  </div>
 </template>
 
 <script>
-export default {
-}
+export default {};
 </script>
