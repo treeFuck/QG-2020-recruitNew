@@ -49,7 +49,7 @@ body {
   .svgCon {
     // svg容器
     height: 150vh;
-    transform: translateY(100vh);
+    transform: translateY(99.5vh);
   }
 }
 // PC
@@ -69,7 +69,7 @@ body {
 }
 @keyframes svgConAnimation
 {
-  0% {z-index: 300;transform: translateY(100vh);}
+  0% {z-index: 300;transform: translateY(99.5vh);}
   50% {z-index: 300;transform: translateY(-25vh);}
   100% {z-index: 300;transform: translateY(-150vh);}
 }
@@ -137,9 +137,9 @@ export default {
     this.startD = this.$store.state.startD3;
     this.endD = this.$store.state.endD3;
     this.$refs.path.setAttribute('d', this.startD);
-    setInterval(()=>{
-      this.pageChange();
-    }, 2000)
+    // setInterval(()=>{
+    //   this.pageChange();
+    // }, 2000)
   },
   watch: {},
   methods: {

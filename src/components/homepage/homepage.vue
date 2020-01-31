@@ -13,14 +13,35 @@
   height: 100vh;
   color: #000;
   background-color: #fff;
+  .QGlogo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+    width: 400px;
+    height: 400px;
+    background-color: #f40;
+    // QGlogo@2x.png
+    // background-image: url('../../assets/QGlogo@2x.png');
+    // background-size: 55.5% 55.5%;
+    // background-position: center;
+
+  }
 }
 </style>
 <template>
   <div class="homepage page">
     <h1>主页</h1>
+    <QGlogo></QGlogo>
   </div>
 </template>
 
 <script>
-export default {};
+import QGlogo from "./QGlogo/QGlogo.vue";
+export default {
+  components: {
+    QGlogo
+  }
+};
 </script>
