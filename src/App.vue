@@ -13,26 +13,14 @@ body {
   overflow: hidden;
 }
 #app {
+  position: relative;
   width: 100vw;
   height: 100vh;
   color: #fff;
   overflow: hidden;
-  .pageChoice { // 当前页
-    z-index: 100;
-  }
-  .svgCon {  // svg容器
-    transform: translateY(100vh);
-	  z-index: 300;
-  }
-  .pageChoiceAnimation { // 当前页换页后
-    transform: translateY(-200vh);
-	  z-index: 200;
-  }
-  .svgConAnimation { // svg容器换页后
-    transform: translateY(-100vh);
-  }
   .page {
     position: absolute;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
@@ -54,6 +42,15 @@ body {
       font-weight: lighter;
     }
   }
+  .pageChoice {
+    // 当前页
+    z-index: 100;
+  }
+  .svgCon {
+    // svg容器
+    height: 150vh;
+    transform: translateY(100vh);
+  }
 }
 // PC
 @media only screen and (min-width: 1024px) {
@@ -64,25 +61,39 @@ body {
 // 手机
 @media only screen and (max-width: 740px) {
 }
+@keyframes prePageAnimation
+{
+  0% {z-index: 300;transform: translateY(0vh);}
+  50% {z-index: 300;transform: translateY(-125vh);}
+  100% {z-index: 300;transform: translateY(-250vh);}
+}
+@keyframes svgConAnimation
+{
+  0% {z-index: 300;transform: translateY(100vh);}
+  50% {z-index: 300;transform: translateY(-25vh);}
+  100% {z-index: 300;transform: translateY(-150vh);}
+}
 </style>
 
 <template>
-  <div id="app" @click='pageChange'>
-    <div class="page svgCon" id="svgCon">
-			<svg xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%">
-				<path id="path" fill='#fff' d="M -44,-50 C -52.71,28.52 15.86,8.186 184,14.69 383.3,22.39 462.5,12.58 638,14 835.5,15.6 987,6.4 1194,13.86 1661,30.68 1652,-36.74 1582,-140.1 1512,-243.5 15.88,-589.5 -44,-50 Z">
-				</path>
-			</svg>
-		</div>
-    <homepage class="pageChoice"></homepage>
-    <studio></studio>
-    <front></front>
-    <end></end>
-    <mobile></mobile>
-    <embedded></embedded>
-    <datas></datas>
-    <game></game>
-    <design></design>
+  <div id="app" @click="pageChange">
+    <div class="page svgCon" ref="svgCon">
+      <svg xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%">
+        <path
+          ref="path"
+          fill="#fff"
+        />
+      </svg>
+    </div>
+    <homepage :class="{pageChoice:index==1}"></homepage>
+    <studio :class="{pageChoice:index==2}"></studio>
+    <front :class="{pageChoice:index==3}"></front>
+    <end :class="{pageChoice:index==4}"></end>
+    <mobile :class="{pageChoice:index==5}"></mobile>
+    <embedded :class="{pageChoice:index==6}"></embedded>
+    <datas :class="{pageChoice:index==7}"></datas>
+    <game :class="{pageChoice:index==8}"></game>
+    <design :class="{pageChoice:index==9}"></design>
   </div>
 </template>
 
@@ -96,8 +107,8 @@ import embedded from "@/components/embedded/embedded.vue";
 import datas from "@/components/datas/datas.vue";
 import game from "@/components/game/game.vue";
 import design from "@/components/design/design.vue";
-import util from '@/utils/util.js';
-import $ from 'jquery';
+import util from "@/utils/util.js";
+import $ from "jquery";
 
 export default {
   components: {
@@ -118,26 +129,33 @@ export default {
       // 当前页数
       index: 1,
       // path的d值，开始与结束
-      startD: 'M -44,-50 C -52.71,28.52 15.86,8.186 184,14.69 383.3,22.39 462.5,12.58 638,14 835.5,15.6 987,6.4 1194,13.86 1661,30.68 1652,-36.74 1582,-140.1 1512,-243.5 15.88,-589.5 -44,-50 Z',
-	    endD:'M -44,-50 C -137.1,117.4 67.86,445.5 236,452 435.3,459.7 500.5,242.6 676,244 873.5,245.6 957,522.4 1154,594 1593,753.7 1793,226.3 1582,-126 1371,-478.3 219.8,-524.2 -44,-50 Z',
+      startD: "",
+      endD: ""
     };
   },
   mounted() {
+    this.startD = this.$store.state.startD3;
+    this.endD = this.$store.state.endD3;
+    this.$refs.path.setAttribute('d', this.startD);
+    setInterval(()=>{
+      this.pageChange();
+    }, 2000)
   },
-  watch: {
-  },
+  watch: {},
   methods: {
     getBrowser() {
       let UserAgent = navigator.userAgent.toLowerCase();
       let browser = null;
       let browserArray = {
         IE: window.ActiveXObject || "ActiveXObject" in window, // IE
-        Chrome: UserAgent.indexOf('chrome') > -1 && UserAgent.indexOf('safari') > -1, // Chrome浏览器
-        Firefox: UserAgent.indexOf('firefox') > -1, // 火狐浏览器
-        Opera: UserAgent.indexOf('opera') > -1, // Opera浏览器
-        Safari: UserAgent.indexOf('safari') > -1 && UserAgent.indexOf('chrome') == -1, // safari浏览器
-        UC: /ucbrowser/.test(UserAgent),  // uc浏览器
-        Edge: UserAgent.indexOf('edge') > -1, // Edge浏览器
+        Chrome:
+          UserAgent.indexOf("chrome") > -1 && UserAgent.indexOf("safari") > -1, // Chrome浏览器
+        Firefox: UserAgent.indexOf("firefox") > -1, // 火狐浏览器
+        Opera: UserAgent.indexOf("opera") > -1, // Opera浏览器
+        Safari:
+          UserAgent.indexOf("safari") > -1 && UserAgent.indexOf("chrome") == -1, // safari浏览器
+        UC: /ucbrowser/.test(UserAgent), // uc浏览器
+        Edge: UserAgent.indexOf("edge") > -1, // Edge浏览器
         QQBrowser: /qqbrowser/.test(UserAgent), // qq浏览器
         WeixinBrowser: /MicroMessenger/i.test(UserAgent) // 微信浏览器
       };
@@ -147,16 +165,16 @@ export default {
         }
       }
       if (!browser) {
-        browser = '';
+        browser = "";
       }
       browser = browser.toLowerCase();
-      if (browser == 'chrome') {
+      if (browser == "chrome") {
         // 区分低版本chrome和高版本chrome
-        let cores = UserAgent.split(' ');
+        let cores = UserAgent.split(" ");
         for (let i = 0; i < cores.length; i++) {
-          if (cores[i].indexOf('chrome') > -1) {
-            if (parseInt(cores[i].split('/')[1]) < 68) {
-              browser = 'lowChrome'
+          if (cores[i].indexOf("chrome") > -1) {
+            if (parseInt(cores[i].split("/")[1]) < 68) {
+              browser = "lowChrome";
             }
           }
         }
@@ -165,60 +183,49 @@ export default {
       return browser;
     },
     pageChange() {
-    if(this.clickLimit) {
- 			return;
- 		}
- 		this.clickLimit = true;
+      if (this.clickLimit) {
+        return;
+      }
+      this.clickLimit = true;
+      let prePage = document.getElementsByClassName('page')[this.index];
+      if(++this.index == 10) this.index = 1;
+      let nowPage = document.getElementsByClassName('page')[this.index];
 
- 		let prePage = document.getElementsByClassName('page')[this.index];
-    let svgCon = document.getElementById('svgCon');
-    let path = document.getElementById('path');
- 		svgCon.style.transition = 'all 2s';
- 		path.style.transition = 'all 1s';
- 		prePage.style.transition = 'all 2s';
- 		if(++this.index == 10) this.index = 1;
- 		let nowPge = document.getElementsByClassName('page')[this.index];
- 		
- 		path.setAttribute('d', this.endD);
- 		prePage.classList.remove('pageChoice');		  // 上一页产生
- 		prePage.classList.add('pageChoiceAnimation'); // 上一页，上移
- 		svgCon.classList.add('svgConAnimation');     // svg跟随上一页上移
- 		nowPge.classList.add('pageChoice');        // 当前页，显示
+      prePage.style.animation = "prePageAnimation 2s";
+      this.$refs.svgCon.style.animation = "svgConAnimation 2s";
+      this.$refs.path.style.transition = "all 1.2s";
+      setTimeout(()=>{
+        this.$refs.path.setAttribute('d', this.endD);
+      }, 100)
 
- 		setTimeout(()=>{
- 			// 样式回位
- 			svgCon.style.transition = 'all 0s';
- 			path.style.transition = 'all 0s';
- 			prePage.style.transition = 'all 0s';
-
- 			// 根据当前页，path改变颜色
- 			if(this.index == 1) {
- 				path.setAttribute('fill', '#fff');
- 			} else if(this.index == 2) {
- 				path.setAttribute('fill', '#7A60BC');
- 			} else if(this.index == 3) {
- 				path.setAttribute('fill', '#64D6E2');
- 			} else if(this.index == 4) {
- 				path.setAttribute('fill', '#A09DE5');
- 			} else if(this.index == 5) {
- 				path.setAttribute('fill', '#A8CFDE');
- 			} else if(this.index == 6) {
- 				path.setAttribute('fill', '#F6D861');
- 			} else if(this.index == 7) {
- 				path.setAttribute('fill', '#3CCAD1');
- 			} else if(this.index == 8) {
- 				path.setAttribute('fill', '#CFC9E5');
- 			} else if(this.index == 9) {
- 				path.setAttribute('fill', '#FDBDDC');
- 			} 
-
- 			path.setAttribute('d', this.startD);
- 			svgCon.classList.remove('svgConAnimation');
- 			prePage.classList.remove('pageChoiceAnimation');
-
- 			this.clickLimit = false;
- 		}, 2000)
+      setTimeout(() => {
+        // 根据当前页，path改变颜色
+        if (this.index == 1) {
+          this.$refs.path.setAttribute("fill", "#fff");
+        } else if (this.index == 2) {
+          this.$refs.path.setAttribute("fill", "#7A60BC");
+        } else if (this.index == 3) {
+          this.$refs.path.setAttribute("fill", "#64D6E2");
+        } else if (this.index == 4) {
+          this.$refs.path.setAttribute("fill", "#A09DE5");
+        } else if (this.index == 5) {
+          this.$refs.path.setAttribute("fill", "#A8CFDE");
+        } else if (this.index == 6) {
+          this.$refs.path.setAttribute("fill", "#F6D861");
+        } else if (this.index == 7) {
+          this.$refs.path.setAttribute("fill", "#3CCAD1");
+        } else if (this.index == 8) {
+          this.$refs.path.setAttribute("fill", "#CFC9E5");
+        } else if (this.index == 9) {
+          this.$refs.path.setAttribute("fill", "#FDBDDC");
+        }
+        prePage.style.animation = "";
+        this.$refs.svgCon.style.animation = "";
+        this.$refs.path.style.transition = "all 0s";
+        this.$refs.path.setAttribute('d', this.startD);
+        this.clickLimit = false;
+      }, 2000);
     }
   }
-}
+};
 </script>
