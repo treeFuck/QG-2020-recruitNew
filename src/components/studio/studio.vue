@@ -25,9 +25,11 @@
   }
   .images {
     position: absolute;
-    bottom: 0.5rem;
+    top: 50%;
     right: 2rem;
+    margin-top: -3.5rem;
     width: 3rem;
+    height: 7rem;
     img {
       margin: 0.1rem;
       width: 3rem;

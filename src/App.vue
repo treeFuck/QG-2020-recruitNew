@@ -18,6 +18,98 @@ body {
   height: 100vh;
   color: #fff;
   overflow: hidden;
+  .toJoin {
+    position: fixed;
+    z-index: 300;
+    top: 15px;
+    right: 35px;
+    font-family: name;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5s; 
+    transform: translateX(35px);
+  }
+  .joinUsShow {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  .scrollDown {
+    position: fixed;
+    z-index: 100;
+    bottom: 15px;
+    width: 100%;
+    font-size: 13px;
+    font-weight: lighter;
+    text-align: center;
+    letter-spacing: 0.1em;
+    transition: all 0.5s; 
+  }
+  .group {
+    position: absolute;
+    z-index: 300;
+    top: 50%;
+    right: 20px;
+    margin-top: -7em;
+    width: 2.7em;
+    height: 14em;
+    color: #000;
+    font-family: name;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5s; 
+    transform: translateX(30px);
+    li {
+      list-style: none;
+      height: 2em;
+      overflow: hidden;
+      text-align: center;
+      background-size: auto 80%;
+      background-position: center;
+      background-repeat: no-repeat; 
+      border-radius: 50%;
+      span {
+        display: inline-block;
+        font-size: 0.6em;
+        line-height: 3.34em;
+        transition: all 0.3s; 
+        transform: translateX(5em);
+      }
+    }
+    li:nth-child(1) {
+      background-image: url('./assets/前端.png');
+    }
+    li:nth-child(2) {
+      background-image: url('./assets/后台.png');
+    }
+    li:nth-child(3) {
+      background-image: url('./assets/移动.png');
+    }
+    li:nth-child(4) {
+      background-image: url('./assets/嵌入式.png');
+    }
+    li:nth-child(5) {
+      background-image: url('./assets/数据挖掘.png');
+    }
+    li:nth-child(6) {
+      background-image: url('./assets/图形.png');
+    }
+    li:nth-child(7) {
+      background-image: url('./assets/设计.png');
+    }
+    li:hover {
+      background: #b2b2b2;
+    }
+    li:hover span {
+      transform: translateX(0em);
+    }
+    
+  }
+  .groupShow {
+    opacity: 1;
+    transform: translateX(0px);
+  }
   .page {
     position: absolute;
     z-index: 1;
@@ -77,6 +169,16 @@ body {
 
 <template>
   <div id="app" @click="pageChange">
+    <div class="toJoin" :style="{color: index==1?'#000':'#fff'}" :class="{'joinUsShow':homepageShow}">JOIN US</div>
+    <ul class="group" :class="{'groupShow':homepageShow}">
+      <li @click="pageChange(3)"><span>前端</span></li>
+      <li @click="pageChange(4)"><span>后台</span></li>
+      <li @click="pageChange(5)"><span>移动</span></li>
+      <li @click="pageChange(6)"><span>嵌入式</span></li>
+      <li @click="pageChange(7)"><span>数据挖掘</span></li>
+      <li @click="pageChange(8)"><span>图形</span></li>
+      <li @click="pageChange(9)"><span>设计</span></li>
+    </ul>
     <div class="page svgCon" ref="svgCon">
       <svg xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%">
         <path
@@ -85,7 +187,7 @@ body {
         />
       </svg>
     </div>
-    <homepage :class="{pageChoice:index==1}"></homepage>
+    <homepage :class="{pageChoice:index==1}" @showHomepage="showHomepage"></homepage>
     <studio :class="{pageChoice:index==2}"></studio>
     <front :class="{pageChoice:index==3}"></front>
     <end :class="{pageChoice:index==4}"></end>
@@ -94,6 +196,7 @@ body {
     <datas :class="{pageChoice:index==7}"></datas>
     <game :class="{pageChoice:index==8}"></game>
     <design :class="{pageChoice:index==9}"></design>
+    <div class="scrollDown" :style="{color: index==1?'#707070':'#fff'}">向下滚动了解更多</div>
   </div>
 </template>
 
@@ -130,7 +233,9 @@ export default {
       index: 1,
       // path的d值，开始与结束
       startD: "",
-      endD: ""
+      endD: "",
+      // JOIN US 和 组别 的显示
+      homepageShow: false,
     };
   },
   mounted() {
@@ -143,6 +248,64 @@ export default {
   },
   watch: {},
   methods: {
+    showHomepage() {
+      this.homepageShow = true;
+    },   
+    pageChange(index) {
+      if(event) {
+        event.stopPropagation();
+      }
+      if (this.clickLimit) {
+        return;
+      }
+      console.log(this.index, index)
+      if(this.index==index) {
+        return;
+      }
+      this.clickLimit = true;
+      let prePage = document.getElementsByClassName('page')[this.index];
+      if(!index) {
+        if(++this.index == 10) this.index = 1;
+      } else {
+        this.index = index;
+      }
+      let nowPage = document.getElementsByClassName('page')[this.index];
+
+      prePage.style.animation = "prePageAnimation 2s";
+      this.$refs.svgCon.style.animation = "svgConAnimation 2s";
+      this.$refs.path.style.transition = "all 1.2s";
+      setTimeout(()=>{
+        this.$refs.path.setAttribute('d', this.endD);
+      }, 100)
+
+      setTimeout(() => {
+        // 根据当前页，path改变颜色
+        if (this.index == 1) {
+          this.$refs.path.setAttribute("fill", "#fff");
+        } else if (this.index == 2) {
+          this.$refs.path.setAttribute("fill", "#7A60BC");
+        } else if (this.index == 3) {
+          this.$refs.path.setAttribute("fill", "#64D6E2");
+        } else if (this.index == 4) {
+          this.$refs.path.setAttribute("fill", "#A09DE5");
+        } else if (this.index == 5) {
+          this.$refs.path.setAttribute("fill", "#A8CFDE");
+        } else if (this.index == 6) {
+          this.$refs.path.setAttribute("fill", "#F6D861");
+        } else if (this.index == 7) {
+          this.$refs.path.setAttribute("fill", "#3CCAD1");
+        } else if (this.index == 8) {
+          this.$refs.path.setAttribute("fill", "#CFC9E5");
+        } else if (this.index == 9) {
+          this.$refs.path.setAttribute("fill", "#FDBDDC");
+        }
+        prePage.style.animation = "";
+        this.$refs.svgCon.style.animation = "";
+        this.$refs.path.style.transition = "all 0s";
+        this.$refs.path.setAttribute('d', this.startD);
+        this.clickLimit = false;
+      }, 2000);
+    },
     getBrowser() {
       let UserAgent = navigator.userAgent.toLowerCase();
       let browser = null;
@@ -182,50 +345,6 @@ export default {
       //this.$store.state.browserName = browser;
       return browser;
     },
-    pageChange() {
-      if (this.clickLimit) {
-        return;
-      }
-      this.clickLimit = true;
-      let prePage = document.getElementsByClassName('page')[this.index];
-      if(++this.index == 10) this.index = 1;
-      let nowPage = document.getElementsByClassName('page')[this.index];
-
-      prePage.style.animation = "prePageAnimation 2s";
-      this.$refs.svgCon.style.animation = "svgConAnimation 2s";
-      this.$refs.path.style.transition = "all 1.2s";
-      setTimeout(()=>{
-        this.$refs.path.setAttribute('d', this.endD);
-      }, 100)
-
-      setTimeout(() => {
-        // 根据当前页，path改变颜色
-        if (this.index == 1) {
-          this.$refs.path.setAttribute("fill", "#fff");
-        } else if (this.index == 2) {
-          this.$refs.path.setAttribute("fill", "#7A60BC");
-        } else if (this.index == 3) {
-          this.$refs.path.setAttribute("fill", "#64D6E2");
-        } else if (this.index == 4) {
-          this.$refs.path.setAttribute("fill", "#A09DE5");
-        } else if (this.index == 5) {
-          this.$refs.path.setAttribute("fill", "#A8CFDE");
-        } else if (this.index == 6) {
-          this.$refs.path.setAttribute("fill", "#F6D861");
-        } else if (this.index == 7) {
-          this.$refs.path.setAttribute("fill", "#3CCAD1");
-        } else if (this.index == 8) {
-          this.$refs.path.setAttribute("fill", "#CFC9E5");
-        } else if (this.index == 9) {
-          this.$refs.path.setAttribute("fill", "#FDBDDC");
-        }
-        prePage.style.animation = "";
-        this.$refs.svgCon.style.animation = "";
-        this.$refs.path.style.transition = "all 0s";
-        this.$refs.path.setAttribute('d', this.startD);
-        this.clickLimit = false;
-      }, 2000);
-    }
   }
 };
 </script>

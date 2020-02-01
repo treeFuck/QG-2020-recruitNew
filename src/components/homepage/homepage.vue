@@ -9,39 +9,72 @@
 @media only screen and (max-width: 740px) {
 }
 .homepage {
+  position: relative;
   width: 100%;
   height: 100vh;
   color: #000;
   background-color: #fff;
-  .QGlogo {
+  .QGlogoStart {
+    transform: translateY(0px);
+  }
+  .QGlogoEnd {
+    transform: translateY(-100px);
+  }
+  .QGname {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -200px;
-    margin-left: -200px;
-    width: 400px;
-    height: 400px;
-    background-color: #f40;
-    // QGlogo@2x.png
-    // background-image: url('../../assets/QGlogo@2x.png');
-    // background-size: 55.5% 55.5%;
-    // background-position: center;
-
+    margin-top: -55.5px;
+    margin-left: -187.5px;
+    width: 375px;
+    height: 111px;
+    background-image: url('../../assets/QGstudio@2x.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.5s;
+    //transform: translateY(150px); 
+  }
+  .QGnameStart {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+  .QGnameEnd {
+    opacity: 1;
+    transform: translateY(50px);
   }
 }
 </style>
 <template>
   <div class="homepage page">
-    <h1>主页</h1>
-    <QGlogo></QGlogo>
+    <QGlogo :class="{QGlogoStart: !QGlogoShow, QGlogoEnd: QGlogoShow}"></QGlogo>
+    <div class="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></div>
   </div>
 </template>
 
 <script>
 import QGlogo from "./QGlogo/QGlogo.vue";
 export default {
+  data() {
+    return {
+      QGlogoShow: false,
+      QGnameShow: false
+    }
+  },
+  methods: {
+
+  },
+  mounted(){
+    setTimeout(()=>{
+      this.QGlogoShow = true;
+      setTimeout(()=>{
+        this.QGnameShow = true;
+        this.$emit('showHomepage');
+      }, 500)
+    }, 4000);
+  },
   components: {
     QGlogo
-  }
+  },
 };
 </script>
