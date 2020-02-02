@@ -8,37 +8,26 @@
 // 手机
 @media only screen and (max-width: 740px) {
 }
-.QGlogo {
+.play {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -100px;
-  margin-left: -100px;
-  width: 200px;
-  height: 200px;
-  transition: all 0.5s;
-  .show {
-    position: absolute;
-    top: 0;
-    left: 0%;
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../assets/QGlogo.png");
-    background-size: 0%;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: all 1s;
-  }
+  z-index: 400;
+  margin-top: -35px;
+  margin-left: -35px;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  transform: translateY(200px);
 }
 </style>
 <template>
-  <div class="QGlogo">
-    <div ref="show" class="show" :style="{'background-size': bgSize}"></div>
+  <div class="play" @click="playVideo()">
     <lottie
       class="lottie"
       :options="defaultOptions"
-      :height="200"
-      :width="200"
+      :height="70"
+      :width="50"
       v-on:animCreated="handleAnimation"
     />
   </div>
@@ -46,16 +35,19 @@
 
 <script>
 import Lottie from "vue-lottie";
-import QGlogo from "@/assets/lottieJson/QGlogo.json";
+import play from "@/assets/lottieJson/play.json";
 
 export default {
   data() {
     return {
-      bgSize: "0%",
-      defaultOptions: { animationData: QGlogo, autoplay: false, loop: false }
+      defaultOptions: { animationData: play, autoplay: false, loop: false }
     };
   },
   methods: {
+    playVideo() {
+      console.log("点击播放");
+      event.stopPropagation();
+    },
     handleAnimation: function(anim) {
       this.anim = anim;
     },
@@ -73,12 +65,6 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.play();
-      setTimeout(() => {
-        this.bgSize = "100%";
-      }, 3000);
-    }, 100);
   },
   components: {
     lottie: Lottie

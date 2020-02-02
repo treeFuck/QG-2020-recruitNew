@@ -24,16 +24,16 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -55.5px;
+    margin-top: -56px;
     margin-left: -187.5px;
     width: 375px;
-    height: 111px;
-    background-image: url('../../assets/QGstudio@2x.png');
+    height: 112px;
+    background-image: url("../../assets/QGstudio@2x.png");
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
     transition: all 0.5s;
-    //transform: translateY(150px); 
+    //transform: translateY(150px);
   }
   .QGnameStart {
     opacity: 0;
@@ -49,32 +49,37 @@
   <div class="homepage page">
     <QGlogo :class="{QGlogoStart: !QGlogoShow, QGlogoEnd: QGlogoShow}"></QGlogo>
     <div class="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></div>
+    <play v-show="playShow" ref="play"></play>
   </div>
 </template>
 
 <script>
 import QGlogo from "./QGlogo/QGlogo.vue";
+import play from "./play/play.vue";
 export default {
   data() {
     return {
       QGlogoShow: false,
-      QGnameShow: false
-    }
+      QGnameShow: false,
+      playShow: false
+    };
   },
   methods: {
-
   },
-  mounted(){
-    setTimeout(()=>{
+  mounted() {
+    setTimeout(() => {
       this.QGlogoShow = true;
-      setTimeout(()=>{
+      setTimeout(() => {
         this.QGnameShow = true;
-        this.$emit('showHomepage');
-      }, 500)
+        this.playShow = true;
+        this.$refs.play.play();
+        this.$emit("showHomepage");
+      }, 500);
     }, 4000);
   },
   components: {
-    QGlogo
-  },
+    QGlogo,
+    play
+  }
 };
 </script>
