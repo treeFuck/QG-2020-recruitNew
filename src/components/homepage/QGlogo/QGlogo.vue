@@ -1,21 +1,35 @@
 <style lang="scss" scoped>
 // PC
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1025px) {
+  .QGlogo {
+    margin-top: -100px;
+    margin-left: -100px;
+    width: 200px;
+    height: 200px;
+  }
 }
 // ipad
-@media only screen and (max-width: 1024px) and (min-width: 740px) {
+@media only screen and (max-width: 1024px) and (min-width: 741px) {
+  .QGlogo {
+    margin-top: -100px;
+    margin-left: -100px;
+    width: 200px;
+    height: 200px;
+  }
 }
 // 手机
 @media only screen and (max-width: 740px) {
+  .QGlogo {
+    margin-top: -60px;
+    margin-left: -60px;
+    width: 120px;
+    height: 120px;
+  }
 }
 .QGlogo {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -100px;
-  margin-left: -100px;
-  width: 200px;
-  height: 200px;
   transition: all 0.5s;
   .show {
     position: absolute;
@@ -30,6 +44,7 @@
     transition: all 1s;
   }
 }
+
 </style>
 <template>
   <div class="QGlogo">
@@ -37,8 +52,8 @@
     <lottie
       class="lottie"
       :options="defaultOptions"
-      :height="200"
-      :width="200"
+      :height="logoSize"
+      :width="logoSize"
       v-on:animCreated="handleAnimation"
     />
   </div>
@@ -47,13 +62,25 @@
 <script>
 import Lottie from "vue-lottie";
 import QGlogo from "@/assets/lottieJson/QGlogo.json";
+import $ from "jquery";
 
 export default {
   data() {
     return {
       bgSize: "0%",
-      defaultOptions: { animationData: QGlogo, autoplay: false, loop: false }
+      defaultOptions: { animationData: QGlogo, autoplay: false, loop: false },
     };
+  },
+  computed: {
+    logoSize: function() {
+      if($(window).width() <= 740) {
+        return 120;
+      } else if($(window).width() <= 1024) {
+        return 200;
+      } else {
+        return 200;
+      }
+    },
   },
   methods: {
     handleAnimation: function(anim) {

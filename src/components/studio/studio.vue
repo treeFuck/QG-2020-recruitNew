@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 // PC
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1025px) {
   .name2 {
     position: absolute;
     top: 0;
@@ -37,10 +37,79 @@
   }
 }
 // ipad
-@media only screen and (max-width: 1024px) and (min-width: 740px) {
+@media only screen and (max-width: 1024px) and (min-width: 741px) {
+  .name2 {
+    position: absolute;
+    top: 0.3em;
+    width: 100%;
+    font-family: name;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1rem;
+  }
+  .introduce2 {
+    position: absolute;
+    top: 1.3rem;
+    padding: 0 5%;
+    width: 90%;
+    text-indent: 2em;
+    font-size: 0.18rem;
+    line-height: 0.22rem;
+    font-weight: lighter;
+    span {
+      color: #000;
+      font-weight: bold;
+    }
+  }
+  .images {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    margin-left: -2.7rem;
+    height: 1.2rem;
+    width: 5.4rem;
+    img {
+      margin: 0 0.1rem;
+      width: 1.6rem;
+    }
+  }
 }
 // 手机
 @media only screen and (max-width: 740px) {
+  .name2 {
+    position: absolute;
+    top: 0;
+    left: 3.9rem;
+    font-family: name;
+    font-size: 1.5rem;
+    line-height: 1.95rem;
+  }
+  .introduce2 {
+    position: absolute;
+    top: 2.1rem;
+    left: 1.25rem;
+    width: 11.7rem;
+    text-indent: 2em;
+    font-size: 0.22rem;
+    line-height: 0.3rem;
+    font-weight: lighter;
+    span {
+      color: #000;
+      font-weight: bold;
+    }
+  }
+  .images {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    margin-top: -3.5rem;
+    width: 3rem;
+    height: 7rem;
+    img {
+      margin: 0.1rem;
+      width: 3rem;
+    }
+  }
 }
 .studio {
   position: relative;

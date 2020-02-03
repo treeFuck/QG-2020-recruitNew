@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 // PC
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1025px) {
   .name {
     top: 0;
     left: 1.4rem;
@@ -17,7 +17,7 @@
   }
 }
 // ipad
-@media only screen and (max-width: 1024px) and (min-width: 740px) {
+@media only screen and (max-width: 1024px) and (min-width: 741px) {
 }
 // 手机
 @media only screen and (max-width: 740px) {

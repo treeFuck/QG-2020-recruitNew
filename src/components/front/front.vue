@@ -1,6 +1,6 @@
 <style lang="scss" scoped>
 // PC
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1025px) {
   .name {
     top: 0;
     left: 1.4rem;
@@ -17,10 +17,38 @@
   }
 }
 // ipad
-@media only screen and (max-width: 1024px) and (min-width: 740px) {
+@media only screen and (max-width: 1024px) and (min-width: 741px) {
+  .name {
+    top: 0;
+    left: 1.4rem;
+  }
+  .bgLogo {
+    bottom: 0.4rem;
+    right: 0.5rem;
+    width: 8.5rem;
+  }
+  .introduce {
+    top: 2.9rem;
+    right: 2.95rem;
+    width: 13.3rem;
+  }
 }
 // 手机
 @media only screen and (max-width: 740px) {
+  .name {
+    top: 0;
+    left: 1.4rem;
+  }
+  .bgLogo {
+    bottom: 0.4rem;
+    right: 0.5rem;
+    width: 8.5rem;
+  }
+  .introduce {
+    top: 2.9rem;
+    right: 2.95rem;
+    width: 13.3rem;
+  }
 }
 .front {
   background-color: #64d6e2;

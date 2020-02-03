@@ -1,47 +1,119 @@
 <style lang="scss" scoped>
 // PC
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1025px) {
+  .homepage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    color: #000;
+    background-color: #fff;
+    .QGlogoStart {
+      transform: translateY(0px);
+    }
+    .QGlogoEnd {
+      transform: translateY(-100px);
+    }
+    .QGname {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -56px;
+      margin-left: -187.5px;
+      width: 375px;
+      height: 112px;
+      background-image: url("../../assets/QGstudio@2x.png");
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: all 0.5s;
+      //transform: translateY(150px);
+    }
+    .QGnameStart {
+      opacity: 0;
+      transform: translateY(70px);
+    }
+    .QGnameEnd {
+      opacity: 1;
+      transform: translateY(50px);
+    }
+  }
 }
 // ipad
-@media only screen and (max-width: 1024px) and (min-width: 740px) {
+@media only screen and (max-width: 1024px) and (min-width: 741px) {
+  .homepage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    color: #000;
+    background-color: #fff;
+    .QGlogoStart {
+      transform: translateY(0px);
+    }
+    .QGlogoEnd {
+      transform: translateY(-100px);
+    }
+    .QGname {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -56px;
+      margin-left: -187.5px;
+      width: 375px;
+      height: 112px;
+      background-image: url("../../assets/QGstudio@2x.png");
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: all 0.5s;
+      //transform: translateY(150px);
+    }
+    .QGnameStart {
+      opacity: 0;
+      transform: translateY(70px);
+    }
+    .QGnameEnd {
+      opacity: 1;
+      transform: translateY(50px);
+    }
+  }
 }
 // 手机
 @media only screen and (max-width: 740px) {
-}
-.homepage {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  color: #000;
-  background-color: #fff;
-  .QGlogoStart {
-    transform: translateY(0px);
-  }
-  .QGlogoEnd {
-    transform: translateY(-100px);
-  }
-  .QGname {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -56px;
-    margin-left: -187.5px;
-    width: 375px;
-    height: 112px;
-    background-image: url("../../assets/QGstudio@2x.png");
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: all 0.5s;
-    //transform: translateY(150px);
-  }
-  .QGnameStart {
-    opacity: 0;
-    transform: translateY(70px);
-  }
-  .QGnameEnd {
-    opacity: 1;
-    transform: translateY(50px);
+  .homepage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    color: #000;
+    background-color: #fff;
+    .QGlogoStart {
+      transform: translateY(0px);
+    }
+    .QGlogoEnd {
+      transform: translateY(-70px);
+    }
+    .QGname {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -33px;
+      margin-left: -108px;
+      width: 216px;
+      height: 66px;
+      background-image: url("../../assets/QGstudio@2x.png");
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: all 0.5s;
+      //transform: translateY(150px);
+    }
+    .QGnameStart {
+      opacity: 0;
+      transform: translateY(70px);
+    }
+    .QGnameEnd {
+      opacity: 1;
+      transform: translateY(30px);
+    }
   }
 }
 </style>
@@ -64,8 +136,7 @@ export default {
       playShow: false
     };
   },
-  methods: {
-  },
+  methods: {},
   mounted() {
     setTimeout(() => {
       this.QGlogoShow = true;
