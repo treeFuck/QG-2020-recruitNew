@@ -309,10 +309,10 @@ body {
     .toJoin {
       position: fixed;
       z-index: 300;
-      top: 10px;
-      right: 20px;
+      top: 5px;
+      right: 5px;
       font-family: name;
-      font-size: 20px;
+      font-size: 18px;
       cursor: pointer;
       opacity: 0;
       transition: all 0.5s;
@@ -339,10 +339,10 @@ body {
     .rocket {
       position: fixed;
       z-index: 300;
-      bottom: -1vh;
-      right: -1vw;
-      width: 150px;
-      height: 150px;
+      bottom: 2vh;
+      right: -2vw;
+      width: 40px;
+      height: 80px;
       cursor: pointer;
       transition: all 0.5s;
     }
@@ -451,29 +451,29 @@ body {
     <div
       class="toJoin"
       @click="joinUs()"
-      :style="{color: index==1?'#000':'#fff'}"
+      :style="{color: index<4?'#000':'#fff'}"
       :class="{'joinUsShow':homepageShow}"
     >JOIN US</div>
     <ul v-show="index==2" class="group" :class="{'groupShow':homepageShow}">
-      <li @click="pageChange(3)">
+      <li @click="pageChange(4)">
         <span>前端</span>
       </li>
-      <li @click="pageChange(4)">
+      <li @click="pageChange(5)">
         <span>后台</span>
       </li>
-      <li @click="pageChange(5)">
+      <li @click="pageChange(6)">
         <span>移动</span>
       </li>
-      <li @click="pageChange(6)">
+      <li @click="pageChange(7)">
         <span>嵌入式</span>
       </li>
-      <li @click="pageChange(7)">
+      <li @click="pageChange(8)">
         <span>数据挖掘</span>
       </li>
-      <li @click="pageChange(8)">
+      <li @click="pageChange(9)">
         <span>图形</span>
       </li>
-      <li @click="pageChange(9)">
+      <li @click="pageChange(10)">
         <span>设计</span>
       </li>
     </ul>
@@ -481,8 +481,8 @@ body {
       <lottie
         class="lottie"
         :options="defaultOptions"
-        :height="150"
-        :width="150"
+        :height="rocketHeight"
+        :width="rocketWidth"
         v-on:animCreated="handleAnimation"
       />
     </div>
@@ -506,6 +506,7 @@ body {
     <game :class="{pageChoice:index==9}"></game>
     <design :class="{pageChoice:index==10}"></design>
     <div
+      v-show="index != 3"
       class="scrollDown"
       :style="{color: index==2?'#707070':'#fff',opacity:scrollDownOpacity}"
     >向下滚动了解更多</div>
@@ -558,7 +559,30 @@ export default {
       scrollDownOpacity: 0,
       // 给事件加锁
       eventLock: true,
+      // 触摸
+      touchStartY: null,
+      touchEndY: null
     };
+  },
+  computed:{
+    rocketHeight: function(){
+      if($(window).width() <= 740) {
+        return 100;
+      } else if($(window).width() <= 1024) {
+        return 120;
+      } else {
+        return 150;
+      }
+    },
+    rocketWidth: function(){
+      if($(window).width() <= 740) {
+        return 40;
+      } else if($(window).width() <= 1024) {
+        return 60;
+      } else {
+        return 75;
+      }
+    }
   },
   mounted() {
     this.getBrowser();
@@ -576,6 +600,18 @@ export default {
     } else {
       util.addHandler(document, 'mousewheel', this.scrollChangePage);
     }
+    util.addHandler(window,'touchstart', (event) => {
+      event.preventDefault();
+      this.touchStartY = event.changedTouches[0].pageY;
+    });
+    util.addHandler(window,'touchmove', (event) => {
+      event.preventDefault();
+    });
+    util.addHandler(window,'touchend', (event) => {
+      event.preventDefault();
+      this.touchEndY = event.changedTouches[0].pageY;
+      this.touchChangePage();
+    });
     util.addHandler(window, 'resize', ()=>{
       this.getEquipment();
     })
@@ -584,13 +620,14 @@ export default {
     '$store.state.equipment': (newVal, oldVal) => {
       if(oldVal) {
         console.log('当前设备:' + newVal);
-        window.location.reload();
+        // window.location.reload();
       }
     },
   },
   methods: {
     joinUs() {
       console.log("点击 JOIN US");
+      alert(`去${this.$store.state.equipment}端的报名表`)
       event.stopPropagation();
     },
     handleAnimation: function(anim) {
@@ -624,14 +661,25 @@ export default {
       event.stopPropagation();
     },
     touchChangePage() {
+      // 触摸滚动事件
       if (this.eventLock) {
         return;
       }
       if (this.isMoving) {
         return;
       }
+      let distance = this.touchEndY - this.touchStartY;
+      if (distance < 50 && distance > -50) {
+        // 防止误触
+        return;
+      }
       let index = this.index;
-      if (++index == 11) index = 2;
+      // alert(`${this.touchEndY - this.touchStartY}`);
+      if (distance > 0) {
+        if (--index == 1) index = 10;
+      } else {
+        if (++index == 11) index = 2;
+      }
       this.pageChange(index);
       event.stopPropagation();
     },
@@ -648,19 +696,32 @@ export default {
       console.log(nowIndex+' to '+nextIndex);
       let prePage = document.getElementsByClassName("page")[nowIndex];
       let nowPage = document.getElementsByClassName("page")[nextIndex];
-      if(nextIndex > nowIndex == 1 || (nextIndex==2&&nowIndex==10)) { // 下一页
-        console.log('下一页')
+      let changeWay = 'next';
+      if(nextIndex > nowIndex) {
+        if(nextIndex == 10 && nowIndex == 2) {
+          changeWay = 'pre';
+        } else {
+          changeWay = 'next';
+        }
+      } else {
+        if(nextIndex == 2 && nowIndex == 10) {
+          changeWay = 'next';
+        } else {
+          changeWay = 'pre';
+        }
+      }
+      console.log(changeWay + ' Page');
+      if(changeWay == 'next') { // 下一页
         prePage.style.animation = "prePageAnimation 2s";
         this.$refs.svgCon1.style.animation = "svgConAnimation 2s";
         this.$refs.path1.style.transition = "all 1.2s";
       } else {      // 上一页
-        console.log('上一页')
         prePage.style.animation = "prePageAnimation2 2s";
         this.$refs.svgCon2.style.animation = "svgConAnimation2 2s";
         this.$refs.path2.style.transition = "all 1.2s";
       }
       setTimeout(() => {
-        if(nextIndex > nowIndex == 1 || (nextIndex==2&&nowIndex==10)) {
+        if(changeWay == 'next') {
           this.$refs.path1.setAttribute("d", this.endD);
         } else {
           this.$refs.path2.setAttribute("d", this.endD);
@@ -669,7 +730,7 @@ export default {
       this.rocketOpacity = 0;
       setTimeout(() => {
         prePage.style.animation = "";
-        if(nextIndex > nowIndex == 1 || (nextIndex==2&&nowIndex==10)) {
+        if(changeWay == 'next') {
           this.$refs.svgCon1.style.animation = "";
           this.$refs.path1.style.transition = "all 0s";
           this.$refs.path1.setAttribute("d", this.startD);

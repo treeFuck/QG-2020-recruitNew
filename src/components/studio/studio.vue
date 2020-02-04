@@ -35,6 +35,11 @@
       width: 3rem;
     }
   }
+  .bottom {
+    position: absolute;
+    bottom: 5px;
+    font-size: 13px;
+  }
 }
 // ipad
 @media only screen and (max-width: 1024px) and (min-width: 741px) {
@@ -73,25 +78,27 @@
       width: 1.6rem;
     }
   }
+  .bottom {
+    position: absolute;
+    bottom: 5px;
+    font-size: 13px;
+  }
 }
 // 手机
 @media only screen and (max-width: 740px) {
   .name2 {
-    position: absolute;
-    top: 0;
-    left: 3.9rem;
+    margin: 0.3rem 0 0.1rem 0;
+    width: 100%;
     font-family: name;
-    font-size: 1.5rem;
-    line-height: 1.95rem;
+    font-size: 0.5rem;
+    text-align: center;
   }
   .introduce2 {
-    position: absolute;
-    top: 2.1rem;
-    left: 1.25rem;
-    width: 11.7rem;
+    padding: 0 5%;
+    width: 90%;
     text-indent: 2em;
-    font-size: 0.22rem;
-    line-height: 0.3rem;
+    font-size: 0.12rem;
+    line-height: 0.16rem;
     font-weight: lighter;
     span {
       color: #000;
@@ -99,16 +106,17 @@
     }
   }
   .images {
-    position: absolute;
-    top: 50%;
-    right: 2rem;
-    margin-top: -3.5rem;
-    width: 3rem;
-    height: 7rem;
+    margin-top: 0.2rem;
+    text-align: center;
     img {
-      margin: 0.1rem;
-      width: 3rem;
+      display: inline-block;
+      margin: 0.05rem;
+      width: 0.95rem;
     }
+  }
+  .bottom {
+    margin-bottom: 5px;
+    font-size: 10px;
   }
 }
 .studio {
@@ -116,10 +124,19 @@
   width: 100%;
   height: 100vh;
   background: #7a60bc;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  .bottom {
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-weight: lighter;
+  }
 }
 </style>
 <template>
   <div class="studio page">
+    <div ref='top'></div>
     <div class="name2">QG工作室</div>
     <div class="introduce2">
       <p>
@@ -136,9 +153,119 @@
       <img src="@/assets/studio3.png" />
       <img src="@/assets/studio1.png" />
     </div>
+    <div class='bottom'>向下滚动了解更多</div>
+    <div ref='bottom'></div>
   </div>
 </template>
 
 <script>
-export default {};
+import util from "@/utils/util.js";
+import $ from "jquery";
+export default {
+  data(){
+    return {
+      scrollLimit: false,
+      touchStartY: null,
+      touchEndY: null
+    }
+  },
+  mounted(){
+    let studio = document.getElementsByClassName('studio')[0];
+    setTimeout(()=>{
+      if (this.$store.state.browserName === 'firefox') {
+        util.addHandler(studio, 'DOMMouseScroll', this.scrollChangePage);
+      } else {
+        util.addHandler(studio, 'mousewheel', this.scrollChangePage);
+      }
+      util.addHandler(studio,'touchstart', (event) => {
+        event.preventDefault();
+        this.touchStartY = event.changedTouches[0].pageY;
+      });
+      // util.addHandler(studio,'touchmove', (event) => {
+      //   event.preventDefault();
+      // });
+      util.addHandler(studio,'touchend', (event) => {
+        event.preventDefault();
+        this.touchEndY = event.changedTouches[0].pageY;
+        this.touchChangePage();
+      });
+    }, 100);
+  },
+  methods: {
+    scrollChangePage() {
+      if(this.$store.state.equipment != 'phone') {
+        return;
+      }
+      event.preventDefault();
+      let detail = event.wheelDelta || event.detail;
+      if (this.$store.state.browserName === 'firefox') {
+        detail = -detail;
+      } 
+      if ($('.studio').scrollTop() == 0) {
+        if (detail > 0) {  //上滚
+          if(this.scrollLimit) {
+            event.stopPropagation();
+          }
+        } else if (detail < 0) {  //下滚
+          this.scrollLimit = true;
+          setTimeout(()=>{
+            this.scrollLimit = false;
+          }, 500)
+          this.$refs.bottom.scrollIntoView(false)
+          event.stopPropagation();
+        }
+      } else {
+        if (detail > 0) {  //上滚
+          this.scrollLimit = true;
+          setTimeout(()=>{
+            this.scrollLimit = false;
+          }, 500)
+          this.$refs.top.scrollIntoView(true)
+          event.stopPropagation(); 
+        } else if (detail < 0) {  //下滚
+          if(this.scrollLimit) {
+            event.stopPropagation();
+          }
+        }
+      }
+    },
+    touchChangePage() {
+      if(this.$store.state.equipment != 'phone') {
+        return;
+      }
+      let distance = this.touchEndY - this.touchStartY;
+      if (distance < 50 && distance > -50) {
+        // 防止误触
+        return;
+      }
+      if ($('.studio').scrollTop() == 0) {
+        if (distance > 0) {
+          if(this.scrollLimit) {
+            event.stopPropagation();
+          }
+        } else {
+          this.scrollLimit = true;
+          setTimeout(()=>{
+            this.scrollLimit = false;
+          }, 500)
+          this.$refs.bottom.scrollIntoView(false)
+          event.stopPropagation();
+        }
+      } else {
+        if (distance < 0) { // 下滚
+          if(this.scrollLimit) {
+            event.stopPropagation();
+          } 
+        } else {  // 上滚
+          this.scrollLimit = true;
+          setTimeout(()=>{
+            this.scrollLimit = false;
+          }, 500)
+          this.$refs.top.scrollIntoView(true)
+          event.stopPropagation();
+        }
+      }
+    }
+  }
+};
 </script>
