@@ -18,9 +18,41 @@
 }
 // ipad
 @media only screen and (max-width: 1024px) and (min-width: 741px) {
+  .name {
+    top: 0.4rem;
+    width: 100%;
+    text-align: center;
+  }
+  .bgLogo {
+    right: 50%;
+    bottom: 1rem;
+    margin-right: -2.9rem;
+    width: 5.8rem;
+  }
+  .introduce {
+    top: 2rem;
+    right: 5%;
+    width: 90%;
+  }
 }
 // 手机
 @media only screen and (max-width: 740px) {
+  .name {
+    top: 0.3rem;
+    width: 100%;
+    text-align: center;
+  }
+  .bgLogo {
+    right: 50%;
+    bottom: 0.5rem;
+    margin-right: -1.4rem;
+    width: 2.8rem;
+  }
+  .introduce {
+    top: 1.3rem;
+    right: 5%;
+    width: 90%;
+  }
 }
 .datas {
   background: #3ccad1;

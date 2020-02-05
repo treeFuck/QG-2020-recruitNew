@@ -27,10 +27,18 @@
   width: 100px;
   height: 100px;
   cursor: pointer;
+  .click{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    z-index: 500;
+  }
 }
 </style>
 <template>
-  <div class="play" @click="playVideo()">
+  <div class="play">
     <lottie
       class="lottie"
       :options="defaultOptions"
@@ -39,6 +47,7 @@
       style="overflow:none"
       v-on:animCreated="handleAnimation"
     />
+    <div class='click' click='playVideo()' @click="playVideo()"></div>
   </div>
 </template>
 
@@ -75,7 +84,7 @@ export default {
   },
   methods: {
     playVideo() {
-      console.log("点击播放");
+      alert("点击播放");
       event.stopPropagation();
     },
     handleAnimation: function(anim) {

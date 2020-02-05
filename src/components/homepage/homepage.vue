@@ -136,7 +136,11 @@ export default {
       playShow: false
     };
   },
-  methods: {},
+  methods: {
+    playVideo() {
+      this.$refs.play.playVideo()
+    }
+  },
   mounted() {
     setTimeout(() => {
       this.QGlogoShow = true;

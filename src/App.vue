@@ -11,9 +11,6 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-}
-// PC
-@media only screen and (min-width: 1025px) {
   #app {
     position: relative;
     width: 100vw;
@@ -23,10 +20,7 @@ body {
     .toJoin {
       position: fixed;
       z-index: 300;
-      top: 15px;
-      right: 35px;
       font-family: name;
-      font-size: 30px;
       cursor: pointer;
       opacity: 0;
       transition: all 0.5s;
@@ -39,9 +33,7 @@ body {
     .scrollDown {
       position: fixed;
       z-index: 100;
-      bottom: 15px;
       width: 100%;
-      font-size: 13px;
       font-weight: lighter;
       text-align: center;
       letter-spacing: 0.1em;
@@ -50,34 +42,18 @@ body {
     .group {
       position: absolute;
       z-index: 300;
-      top: 50%;
-      right: 20px;
-      margin-top: -7em;
-      width: 2.7em;
-      height: 14em;
       color: #000;
       font-family: name;
-      font-size: 30px;
       cursor: pointer;
       opacity: 0;
       transition: all 0.5s;
-      transform: translateX(30px);
       li {
         list-style: none;
-        height: 2em;
         overflow: hidden;
-        text-align: center;
         background-size: auto 80%;
         background-position: center;
         background-repeat: no-repeat;
         border-radius: 50%;
-        span {
-          display: inline-block;
-          font-size: 0.6em;
-          line-height: 3.34em;
-          transition: all 0.3s;
-          transform: translateX(5em);
-        }
       }
       li:nth-child(1) {
         background-image: url("./assets/前端.png");
@@ -107,20 +83,19 @@ body {
         transform: translateX(0em);
       }
     }
-    .groupShow {
-      opacity: 1;
-      transform: translateX(0px);
-    }
     .rocket {
       position: fixed;
       z-index: 300;
-      top: 50%;
-      right: -1vw;
-      margin-top: -75px;
-      width: 150px;
-      height: 150px;
       cursor: pointer;
       transition: all 0.5s;
+      .click {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 500;
+      }
     }
     .page {
       position: absolute;
@@ -132,8 +107,6 @@ body {
       .name {
         position: absolute;
         font-family: name;
-        font-size: 2rem;
-        line-height: 2.6rem;
       }
       .bgLogo {
         position: absolute;
@@ -141,8 +114,6 @@ body {
       .introduce {
         position: absolute;
         text-indent: 2em;
-        font-size: 0.4rem;
-        line-height: 0.7rem;
         font-weight: lighter;
       }
     }
@@ -162,87 +133,89 @@ body {
     }
   }
 }
-// ipad
-@media only screen and (max-width: 1024px) and (min-width: 741px) {
+// PC
+@media only screen and (min-width: 1025px) {
   #app {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    color: #fff;
-    overflow: hidden;
     .toJoin {
-      position: fixed;
-      z-index: 300;
       top: 15px;
       right: 35px;
-      font-family: name;
       font-size: 30px;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.5s;
-      transform: translateX(35px);
     }
-    .joinUsShow {
+    .scrollDown {
+      bottom: 15px;
+      font-size: 13px;
+    }
+    .group {
+      top: 50%;
+      right: 20px;
+      margin-top: -7em;
+      width: 2.7em;
+      height: 14em;
+      font-size: 30px;
+      transform: translateX(30px);
+      li {
+        list-style: none;
+        height: 2em;
+        text-align: center;
+        span {
+          display: inline-block;
+          font-size: 0.6em;
+          line-height: 3.34em;
+          transition: all 0.3s;
+          transform: translateX(5em);
+        }
+      }
+    }
+    .groupShow {
       opacity: 1;
       transform: translateX(0px);
     }
+    .rocket {
+      top: 50%;
+      right: -1vw;
+      margin-top: -75px;
+      width: 150px;
+      height: 150px;
+    }
+    .page {
+      .name {
+        font-size: 2rem;
+        line-height: 2.6rem;
+      }
+      .introduce {
+        font-size: 0.4rem;
+        line-height: 0.7rem;
+      }
+    }
+  }
+}
+// ipad
+@media only screen and (max-width: 1024px) and (min-width: 741px) {
+  #app {
+    .toJoin {
+      top: 15px;
+      right: 35px;
+      font-size: 30px;
+    }
     .scrollDown {
-      position: fixed;
-      z-index: 100;
       bottom: 15px;
-      width: 100%;
       font-size: 13px;
-      font-weight: lighter;
-      text-align: center;
-      letter-spacing: 0.1em;
-      transition: all 1s;
     }
     .group {
-      position: absolute;
-      z-index: 300;
       bottom: 40px;
       left: 50%;
       margin-left: -7em;
       height: 2.7em;
       width: 14em;
-      opacity: 0;
       font-size: 30px;
-      transition: all 0.5s;
       transform: translateY(30px);
       li {
         display: inline-block;
-        list-style: none;
         width: 2em;
         height: 2em;
-        overflow: hidden;
-        background-size: auto 80%;
-        background-position: center;
-        background-repeat: no-repeat;
-        border-radius: 50%;
         span {
           display: none;
         }
-      }
-      li:nth-child(1) {
-        background-image: url("./assets/前端.png");
-      }
-      li:nth-child(2) {
-        background-image: url("./assets/后台.png");
-      }
-      li:nth-child(3) {
-        background-image: url("./assets/移动.png");
-      }
-      li:nth-child(4) {
-        background-image: url("./assets/嵌入式.png");
-      }
-      li:nth-child(5) {
-        background-image: url("./assets/数据挖掘.png");
-      }
-      li:nth-child(6) {
-        background-image: url("./assets/图形.png");
-      }
-      li:nth-child(7) {
-        background-image: url("./assets/设计.png");
       }
     }
     .groupShow {
@@ -250,140 +223,55 @@ body {
       transform: translateY(0px);
     }
     .rocket {
-      position: fixed;
-      z-index: 300;
-      bottom: -1vh;
+      bottom: 0;
       right: -1vw;
       width: 150px;
       height: 150px;
-      transition: all 0.5s;
     }
     .page {
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
       .name {
-        position: absolute;
-        font-family: name;
         font-size: 1rem;
         line-height: 1.2rem;
       }
-      .bgLogo {
-        position: absolute;
-      }
       .introduce {
-        position: absolute;
-        text-indent: 2em;
         font-size: 0.3rem;
         line-height: 0.5rem;
-        font-weight: lighter;
       }
-    }
-    .pageChoice {
-      // 当前页
-      z-index: 100;
-    }
-    .svgCon1 {
-      // svg容器
-      height: 150vh;
-      transform: translateY(99.5vh);
-    }
-    .svgCon2 {
-      // svg容器
-      height: 150vh;
-      transform: rotate(180deg) translateY(149.5vh);
     }
   }
 }
 // 手机
 @media only screen and (max-width: 740px) {
   #app {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    color: #fff;
-    overflow: hidden;
     .toJoin {
-      position: fixed;
-      z-index: 300;
       top: 5px;
       right: 5px;
-      font-family: name;
       font-size: 18px;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.5s;
-      transform: translateX(35px);
-    }
-    .joinUsShow {
-      opacity: 1;
-      transform: translateX(0px);
     }
     .scrollDown {
-      position: fixed;
-      z-index: 100;
       bottom: 5px;
-      width: 100%;
       font-size: 10px;
-      font-weight: lighter;
-      text-align: center;
-      letter-spacing: 0.1em;
-      transition: all 1s;
     }
     .group {
       display: none;
     }
     .rocket {
-      position: fixed;
-      z-index: 300;
       bottom: 2vh;
-      right: -2vw;
+      right: 0;
       width: 40px;
       height: 80px;
-      cursor: pointer;
-      transition: all 0.5s;
     }
     .page {
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
       .name {
-        position: absolute;
         font-family: name;
-        font-size: 2rem;
-        line-height: 2.6rem;
-      }
-      .bgLogo {
-        position: absolute;
+        font-size: 0.6rem;
       }
       .introduce {
-        position: absolute;
-        text-indent: 2em;
-        font-size: 0.4rem;
-        line-height: 0.7rem;
-        font-weight: lighter;
+        font-size: 0.15rem;
+        line-height: 0.25rem;
       }
     }
-    .pageChoice {
-      // 当前页
-      z-index: 100;
-    }
-    .svgCon1 {
-      // svg容器
-      height: 150vh;
-      transform: translateY(99.5vh);
-    }
-    .svgCon2 {
-      // svg容器
-      height: 150vh;
-      transform: rotate(180deg) translateY(149.5vh);
-    }
+    
   }
 }
 // 下一页动画
@@ -394,11 +282,11 @@ body {
   }
   50% {
     z-index: 300;
-    transform: translateY(-105vh);
+    transform: translateY(-125vh);
   }
   100% {
     z-index: 300;
-    transform: translateY(-210vh);
+    transform: translateY(-230vh);
   }
 }
 @keyframes svgConAnimation {
@@ -408,11 +296,11 @@ body {
   }
   50% {
     z-index: 300;
-    transform: translateY(-5vh);
+    transform: translateY(-25vh);
   }
   100% {
     z-index: 300;
-    transform: translateY(-110vh);
+    transform: translateY(-130vh);
   }
 }
 // 上一页动画
@@ -423,11 +311,11 @@ body {
   }
   50% {
     z-index: 300;
-    transform: translateY(105vh);
+    transform: translateY(125vh);
   }
   100% {
     z-index: 300;
-    transform: translateY(210vh);
+    transform: translateY(230vh);
   }
 }
 @keyframes svgConAnimation2 {
@@ -437,11 +325,11 @@ body {
   }
   50% {
     z-index: 300;
-    transform: rotate(180deg) translateY(45vh);
+    transform: rotate(180deg) translateY(25vh);
   }
   100% {
     z-index: 300;
-    transform: rotate(180deg) translateY(-60vh);
+    transform: rotate(180deg) translateY(-80vh);
   }
 }
 </style>
@@ -450,34 +338,35 @@ body {
   <div id="app">
     <div
       class="toJoin"
+      click='joinUs()'
       @click="joinUs()"
       :style="{color: index<4?'#000':'#fff'}"
       :class="{'joinUsShow':homepageShow}"
     >JOIN US</div>
     <ul v-show="index==2" class="group" :class="{'groupShow':homepageShow}">
-      <li @click="pageChange(4)">
+      <li @click="pageChange(4)" click='pageChange(4)'>
         <span>前端</span>
       </li>
-      <li @click="pageChange(5)">
+      <li @click="pageChange(5)" click='pageChange(5)'>
         <span>后台</span>
       </li>
-      <li @click="pageChange(6)">
+      <li @click="pageChange(6)" click='pageChange(6)'>
         <span>移动</span>
       </li>
-      <li @click="pageChange(7)">
+      <li @click="pageChange(7)" click='pageChange(7)'>
         <span>嵌入式</span>
       </li>
-      <li @click="pageChange(8)">
+      <li @click="pageChange(8)" click='pageChange(8)'>
         <span>数据挖掘</span>
       </li>
-      <li @click="pageChange(9)">
+      <li @click="pageChange(9)" click='pageChange(9)'>
         <span>图形</span>
       </li>
-      <li @click="pageChange(10)">
+      <li @click="pageChange(10)" click='pageChange(10)'>
         <span>设计</span>
       </li>
     </ul>
-    <div v-show="index!=2" class="rocket" @click="pageChange(2)" :style="{opacity:rocketOpacity}">
+    <div v-show="index!=2" class="rocket" :style="{opacity:rocketOpacity}">
       <lottie
         class="lottie"
         :options="defaultOptions"
@@ -485,6 +374,10 @@ body {
         :width="rocketWidth"
         v-on:animCreated="handleAnimation"
       />
+      <div class="click" click='pageChange(2)'  @click="pageChange(2)"></div>
+    </div>
+    <div class="sidebar">
+      <span v-for="index in 7"></span>
     </div>
     <div class="page svgCon1" ref="svgCon1">
       <svg xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%">
@@ -496,7 +389,7 @@ body {
         <path ref="path2" fill="#fff" />
       </svg>
     </div>
-    <homepage :class="{pageChoice:index==2}" @showHomepage="showHomepage"></homepage>
+    <homepage :class="{pageChoice:index==2}" @showHomepage="showHomepage" ref='homepage'></homepage>
     <studio :class="{pageChoice:index==3}"></studio>
     <front :class="{pageChoice:index==4}"></front>
     <end :class="{pageChoice:index==5}"></end>
@@ -569,7 +462,7 @@ export default {
       if($(window).width() <= 740) {
         return 100;
       } else if($(window).width() <= 1024) {
-        return 120;
+        return 150;
       } else {
         return 150;
       }
@@ -578,7 +471,7 @@ export default {
       if($(window).width() <= 740) {
         return 40;
       } else if($(window).width() <= 1024) {
-        return 60;
+        return 75;
       } else {
         return 75;
       }
@@ -588,8 +481,14 @@ export default {
     this.getBrowser();
     this.getEquipment();
     console.log('当前浏览器是:'+this.$store.state.browserName);
-    this.startD = this.$store.state.startD3;
-    this.endD = this.$store.state.endD3;
+    if(this.$store.state.equipment!='phone') {
+      this.startD = this.$store.state.startD3;
+      this.endD = this.$store.state.endD3;
+    } else {
+      this.startD = this.$store.state.startD3;
+      this.endD = this.$store.state.endD3;
+    }
+    
     this.$refs.path1.setAttribute("d", this.startD);
     this.$refs.path2.setAttribute("d", this.startD);
     setTimeout(() => {
@@ -600,14 +499,12 @@ export default {
     } else {
       util.addHandler(document, 'mousewheel', this.scrollChangePage);
     }
-    util.addHandler(window,'touchstart', (event) => {
+    let app = document.getElementById('app');
+    util.addHandler(app,'touchstart', (event) => {
       event.preventDefault();
       this.touchStartY = event.changedTouches[0].pageY;
     });
-    util.addHandler(window,'touchmove', (event) => {
-      event.preventDefault();
-    });
-    util.addHandler(window,'touchend', (event) => {
+    util.addHandler(app,'touchend', (event) => {
       event.preventDefault();
       this.touchEndY = event.changedTouches[0].pageY;
       this.touchChangePage();
@@ -670,7 +567,12 @@ export default {
       }
       let distance = this.touchEndY - this.touchStartY;
       if (distance < 50 && distance > -50) {
-        // 防止误触
+        let clickFun = event.target.getAttribute('click');
+        console.log(clickFun)
+        if(clickFun) {
+          this.clickFun(clickFun);
+        }
+        event.stopPropagation();
         return;
       }
       let index = this.index;
@@ -746,6 +648,31 @@ export default {
       }, 2000);
       if (event) {
         event.stopPropagation();
+      }
+    },
+    clickFun(clickFun) {
+      if(clickFun == 'pageChange(2)') {
+        this.pageChange(2);
+      } else if(clickFun == 'pageChange(3)') {
+        this.pageChange(3);
+      } else if(clickFun == 'pageChange(4)') {
+        this.pageChange(4);
+      } else if(clickFun == 'pageChange(5)') {
+        this.pageChange(5);
+      } else if(clickFun == 'pageChange(6)') {
+        this.pageChange(6);
+      } else if(clickFun == 'pageChange(7)') {
+        this.pageChange(7);
+      } else if(clickFun == 'pageChange(8)') {
+        this.pageChange(8);
+      } else if(clickFun == 'pageChange(9)') {
+        this.pageChange(9);
+      } else if(clickFun == 'pageChange(10)') {
+        this.pageChange(10);
+      } else if(clickFun == 'joinUs()') {
+        this.joinUs();
+      } else if(clickFun == 'playVideo()') {
+        this.$refs.homepage.playVideo();
       }
     },
     getColor() {
