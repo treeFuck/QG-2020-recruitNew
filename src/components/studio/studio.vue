@@ -35,12 +35,29 @@
       img {
         margin: 0.1rem;
         width: 3rem;
+        cursor: pointer;
       }
     }
     .bottom {
       position: absolute;
       bottom: 5px;
       font-size: 13px;
+    }
+    .imgShow {
+      top: 10%;
+      left: 10%;
+      height: 80%;
+      width: 80%;
+      .close {
+        width: 35px;
+        cursor: pointer;
+      }
+      .img {
+        top: 10%;
+        left: 50%;
+        height: 80%;
+        transform: translateX(-50%);
+      }
     }
   }
 }
@@ -88,6 +105,21 @@
       bottom: 5px;
       font-size: 13px;
     }
+    .imgShow {
+      left: 5%;
+      top: 25%;
+      height: 50%;
+      width: 90%;
+      .close {
+        width: 40px;
+      }
+      .img {
+        top: 50%;
+        left: 10%;
+        width: 80%;
+        transform: translateY(-50%);
+      }
+    }
   }
 }
 // 手机
@@ -127,8 +159,24 @@
       margin-bottom: 5px;
       font-size: 10px;
     }
+    .imgShow {
+      left: 5%;
+      top: 25%;
+      height: 50%;
+      width: 90%;
+      .close {
+        width: 20px;
+      }
+      .img {
+        top: 50%;
+        left: 5%;
+        width: 90%;
+        transform: translateY(-50%);
+      }
+    }
   }
 }
+
 .studio {
   position: relative;
   width: 100%;
@@ -139,6 +187,21 @@
     color: #fff;
     text-align: center;
     font-weight: lighter;
+  }
+  .imgShow {
+    position: fixed;
+    z-index: 205;
+    background-color: #fff;
+    box-shadow: 0 0 20px #666;
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+    .img {
+      position: absolute;
+      box-shadow: 0 0 10px #999;
+    }
   }
 }
 </style>
@@ -157,9 +220,15 @@
       <p>QG 科技创新团队在学校的大力支持下，心系中国梦的奋进，经过十几年的建设，形成了自己独特的文化和传承，把团队精神的培养上升到与学术与科研能力并重，团队具有很强的凝聚力和战斗力，培养了大批品学兼优、专业知识扎实、能独当一面的创新型人才，获得了丰硕的成果，团队成为广东工业大学“标志性获奖团队”，团队的毕业生曾获得“广东工业大学十佳优秀毕业生”，“广东工业大学十佳创新支星”称号，大部分毕业生进入了华为、阿里巴巴、百度、腾讯等知名IT公司及企事业单位工作，成为了核心技术骨干，获得用人单位的肯定和好评，曾获得百度“最佳个人”（该奖项颁发为一年一度，颁发给百度优秀杰出员工，名额仅五个），腾讯“优秀员工”、“腾讯微信事业群绩效突出者”、另有部分毕业生或“推免”留校深造或到海内外高校继续攻读硕（博）士，或在毕业后进行了创业，获得了初步的成功！</p>
     </div>
     <div class="images">
-      <img src="@/assets/studio2.png" />
-      <img src="@/assets/studio3.png" />
-      <img src="@/assets/studio1.png" />
+      <img src="@/assets/studio2.png" @click="showImg(0)" click="0" />
+      <img src="@/assets/studio3.png" @click="showImg(1)" click="1" />
+      <img src="@/assets/studio1.png" @click="showImg(2)" click="2" />
+    </div>
+    <div class="imgShow" v-show="imgShow">
+      <img class="close" src="@/assets/close.png" @click="closeImg" click="closeImg" />
+      <img class="img" src="@/assets/studio2.png" v-show="imgShowIndex==0"/>
+      <img class="img" src="@/assets/studio3.png" v-show="imgShowIndex==1"/>
+      <img class="img" src="@/assets/studio1.png" v-show="imgShowIndex==2"/>
     </div>
     <div class="bottom">向下滚动了解更多</div>
     <div ref="bottom"></div>
@@ -174,7 +243,9 @@ export default {
     return {
       scrollLimit: false,
       touchStartY: null,
-      touchEndY: null
+      touchEndY: null,
+      imgShow: false,
+      imgShowIndex: 0
     };
   },
   mounted() {
@@ -200,6 +271,13 @@ export default {
     }, 100);
   },
   methods: {
+    showImg(index) {
+      this.imgShow = true;
+      this.imgShowIndex = index;
+    },
+    closeImg() {
+      this.imgShow = false;
+    },
     scrollChangePage() {
       if (this.$store.state.equipment != "phone") {
         return;
@@ -242,12 +320,23 @@ export default {
       }
     },
     touchChangePage() {
-      if (this.$store.state.equipment != "phone") {
+      if (this.$store.state.equipment == "PC") {
         return;
       }
       let distance = this.touchEndY - this.touchStartY;
       if (distance < 50 && distance > -50) {
-        // 防止误触
+        let clickFun = event.target.getAttribute("click");
+        if (clickFun) {
+          if (clickFun == "closeImg") {
+            this.closeImg();
+          } else {
+            this.showImg(clickFun);
+          }
+        }
+        event.stopPropagation();
+        return;
+      }
+      if (this.$store.state.equipment == "ipad") {
         return;
       }
       if ($(".studio").scrollTop() == 0) {

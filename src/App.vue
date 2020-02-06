@@ -97,6 +97,16 @@ body {
         z-index: 500;
       }
     }
+    .sidebar {
+      position: fixed;
+      z-index: 400;
+      span {
+        display: block;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.3s;
+      }
+    }
     .page {
       position: absolute;
       z-index: 1;
@@ -177,6 +187,16 @@ body {
       width: 150px;
       height: 150px;
     }
+    .sidebar {
+      left: 3%;
+      top: 50%;
+      transform: translateY(-50%);
+      span {
+        margin: 25px 0;
+        width: 16px;
+        height: 16px;
+      }
+    }
     .page {
       .name {
         font-size: 2rem;
@@ -228,6 +248,15 @@ body {
       width: 150px;
       height: 150px;
     }
+    .sidebar {
+      left: 4%;
+      bottom: 5%;
+      span {
+        margin: 25px 0;
+        width: 15px;
+        height: 15px;
+      }
+    }
     .page {
       .name {
         font-size: 1rem;
@@ -260,6 +289,15 @@ body {
       right: 0;
       width: 40px;
       height: 80px;
+    }
+    .sidebar {
+      left: 5%;
+      bottom: 3%;
+      span {
+        margin: 20px 0;
+        width: 10px;
+        height: 10px;
+      }
     }
     .page {
       .name {
@@ -376,8 +414,8 @@ body {
       />
       <div class="click" click='pageChange(2)'  @click="pageChange(2)"></div>
     </div>
-    <div class="sidebar">
-      <span v-for="index in 7"></span>
+    <div class="sidebar" v-show="index>3">
+      <span v-for="Index in 7" :key='Index' :style="{'background-color':Index+3==index?'#5B08C3':'#fff'}" @click="pageChange(Index+3)" :click='`pageChange(${Index+3})`'></span>
     </div>
     <div class="page svgCon1" ref="svgCon1">
       <svg xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%">
@@ -517,7 +555,7 @@ export default {
     '$store.state.equipment': (newVal, oldVal) => {
       if(oldVal) {
         console.log('当前设备:' + newVal);
-        // window.location.reload();
+        window.location.reload();
       }
     },
   },
