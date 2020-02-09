@@ -3,6 +3,11 @@
   font-family: name;
   src: url(./assets/优设标题黑.ttf);
 }
+@font-face {
+  font-family: introduce;
+  src: url(./assets/思源黑体R.ttf);
+}
+// 思源黑体R.ttf
 * {
   padding: 0;
   margin: 0;
@@ -11,138 +16,140 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  #app {
-    position: relative;
+}
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  overflow: hidden;
+  .toJoin {
+    position: fixed;
+    z-index: 300;
+    font-family: name;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5s;
+    transform: translateX(35px);
+  }
+  .joinUsShow {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  .scrollDown {
+    position: fixed;
+    z-index: 100;
     width: 100%;
-    height: 100%;
-    color: #fff;
-    overflow: hidden;
-    .toJoin {
-      position: fixed;
-      z-index: 300;
-      font-family: name;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.5s;
-      transform: translateX(35px);
+    font-weight: lighter;
+    text-align: center;
+    letter-spacing: 0.1em;
+    transition: all 1s;
+  }
+  .group {
+    position: absolute;
+    z-index: 300;
+    color: #000;
+    font-family: name;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5s;
+    li {
+      list-style: none;
+      overflow: hidden;
+      background-size: auto 80%;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 50%;
     }
-    .joinUsShow {
-      opacity: 1;
-      transform: translateX(0px);
+    li:nth-child(1) {
+      background-image: url("./assets/前端.png");
     }
-    .scrollDown {
-      position: fixed;
-      z-index: 100;
-      width: 100%;
-      font-weight: lighter;
-      text-align: center;
-      letter-spacing: 0.1em;
-      transition: all 1s;
+    li:nth-child(2) {
+      background-image: url("./assets/后台.png");
     }
-    .group {
+     li:nth-child(3) {
+      background-image: url("./assets/数据挖掘.png");
+    }
+    li:nth-child(4) {
+      background-image: url("./assets/移动.png");
+    }
+    li:nth-child(5) {
+      background-image: url("./assets/嵌入式.png");
+    }
+    li:nth-child(6) {
+      background-image: url("./assets/图形.png");
+    }
+    li:nth-child(7) {
+      background-image: url("./assets/设计.png");
+    }
+    li:hover {
+      background: #b2b2b2;
+    }
+    li:hover span {
+      transform: translateX(0em);
+    }
+  }
+  .rocket {
+    position: fixed;
+    z-index: 300;
+    cursor: pointer;
+    transition: all 0.5s;
+    .click {
       position: absolute;
-      z-index: 300;
-      color: #000;
-      font-family: name;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.5s;
-      li {
-        list-style: none;
-        overflow: hidden;
-        background-size: auto 80%;
-        background-position: center;
-        background-repeat: no-repeat;
-        border-radius: 50%;
-      }
-      li:nth-child(1) {
-        background-image: url("./assets/前端.png");
-      }
-      li:nth-child(2) {
-        background-image: url("./assets/后台.png");
-      }
-      li:nth-child(3) {
-        background-image: url("./assets/移动.png");
-      }
-      li:nth-child(4) {
-        background-image: url("./assets/嵌入式.png");
-      }
-      li:nth-child(5) {
-        background-image: url("./assets/数据挖掘.png");
-      }
-      li:nth-child(6) {
-        background-image: url("./assets/图形.png");
-      }
-      li:nth-child(7) {
-        background-image: url("./assets/设计.png");
-      }
-      li:hover {
-        background: #b2b2b2;
-      }
-      li:hover span {
-        transform: translateX(0em);
-      }
-    }
-    .rocket {
-      position: fixed;
-      z-index: 300;
-      cursor: pointer;
-      transition: all 0.5s;
-      .click {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 500;
-      }
-    }
-    .sidebar {
-      position: fixed;
-      z-index: 400;
-      span {
-        display: block;
-        cursor: pointer;
-        border-radius: 50%;
-        transition: all 0.3s;
-      }
-    }
-    .page {
-      position: absolute;
-      z-index: 1;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      .name {
-        position: absolute;
-        font-family: name;
-      }
-      .bgLogo {
-        position: absolute;
-      }
-      .introduce {
-        position: absolute;
-        text-indent: 2em;
-        font-weight: lighter;
-      }
-    }
-    .pageChoice {
-      // 当前页
-      z-index: 100;
-    }
-    .svgCon1 {
-      // svg容器
-      height: 150vh;
-      transform: translateY(99.5vh);
-    }
-    .svgCon2 {
-      // svg容器
-      height: 150vh;
-      transform: rotate(180deg) translateY(149.5vh);
+      z-index: 500;
     }
   }
+  .sidebar {
+    position: fixed;
+    z-index: 400;
+    span {
+      display: block;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+  }
+  .page {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    .name {
+      position: absolute;
+      font-family: name;
+    }
+    .bgLogo {
+      position: absolute;
+    }
+    .introduce {
+      position: absolute;
+      font-family: introduce;
+      text-indent: 2em;
+      font-weight: lighter;
+    }
+  }
+  .pageChoice {
+    // 当前页
+    z-index: 100;
+  }
+  .svgCon1 {
+    // svg容器
+    height: 100vh;
+    transform: translateY(100vh);
+  }
+  .svgCon2 {
+    // svg容器
+    height: 100vh;
+    transform: rotate(180deg) translateY(100vh);
+  }
 }
+
 // PC
 @media only screen and (min-width: 1025px) {
   #app {
@@ -309,7 +316,6 @@ body {
         line-height: 0.25rem;
       }
     }
-    
   }
 }
 // 下一页动画
@@ -318,56 +324,56 @@ body {
     z-index: 300;
     transform: translateY(0vh);
   }
-  50% {
-    z-index: 300;
-    transform: translateY(-125vh);
-  }
+  // 50% {
+  //   z-index: 300;
+  //   transform: translateY(-125vh);
+  // }
   100% {
     z-index: 300;
-    transform: translateY(-230vh);
+    transform: translateY(-200vh);
   }
 }
 @keyframes svgConAnimation {
   0% {
     z-index: 300;
-    transform: translateY(99.5vh);
+    transform: translateY(100vh);
   }
-  50% {
-    z-index: 300;
-    transform: translateY(-25vh);
-  }
+  // 50% {
+  //   z-index: 300;
+  //   transform: translateY(-25vh);
+  // }
   100% {
     z-index: 300;
-    transform: translateY(-130vh);
+    transform: translateY(-100vh);
   }
 }
 // 上一页动画
 @keyframes prePageAnimation2 {
   0% {
     z-index: 300;
-    transform:  translateY(0vh);
+    transform: translateY(0vh);
   }
-  50% {
-    z-index: 300;
-    transform: translateY(125vh);
-  }
+  // 50% {
+  //   z-index: 300;
+  //   transform: translateY(125vh);
+  // }
   100% {
     z-index: 300;
-    transform: translateY(230vh);
+    transform: translateY(200vh);
   }
 }
 @keyframes svgConAnimation2 {
   0% {
     z-index: 300;
-    transform: rotate(180deg) translateY(149.5vh);
+    transform: rotate(180deg) translateY(100vh);
   }
-  50% {
-    z-index: 300;
-    transform: rotate(180deg) translateY(25vh);
-  }
+  // 50% {
+  //   z-index: 300;
+  //   transform: rotate(180deg) translateY(25vh);
+  // }
   100% {
     z-index: 300;
-    transform: rotate(180deg) translateY(-80vh);
+    transform: rotate(180deg) translateY(-100vh);
   }
 }
 </style>
@@ -376,31 +382,31 @@ body {
   <div id="app">
     <div
       class="toJoin"
-      click='joinUs()'
+      click="joinUs()"
       @click="joinUs()"
       :style="{color: index<4?'#000':'#fff'}"
       :class="{'joinUsShow':homepageShow}"
     >JOIN US</div>
     <ul v-show="index==2" class="group" :class="{'groupShow':homepageShow}">
-      <li @click="pageChange(4)" click='pageChange(4)'>
+      <li @click="pageChange(4)" click="pageChange(4)">
         <span>前端</span>
       </li>
-      <li @click="pageChange(5)" click='pageChange(5)'>
+      <li @click="pageChange(5)" click="pageChange(5)">
         <span>后台</span>
       </li>
-      <li @click="pageChange(6)" click='pageChange(6)'>
-        <span>移动</span>
-      </li>
-      <li @click="pageChange(7)" click='pageChange(7)'>
-        <span>嵌入式</span>
-      </li>
-      <li @click="pageChange(8)" click='pageChange(8)'>
+      <li @click="pageChange(6)" click="pageChange(8)">
         <span>数据挖掘</span>
       </li>
-      <li @click="pageChange(9)" click='pageChange(9)'>
+      <li @click="pageChange(7)" click="pageChange(6)">
+        <span>移动</span>
+      </li>
+      <li @click="pageChange(8)" click="pageChange(7)">
+        <span>嵌入式</span>
+      </li>
+      <li @click="pageChange(9)" click="pageChange(9)">
         <span>图形</span>
       </li>
-      <li @click="pageChange(10)" click='pageChange(10)'>
+      <li @click="pageChange(10)" click="pageChange(10)">
         <span>设计</span>
       </li>
     </ul>
@@ -412,28 +418,34 @@ body {
         :width="rocketWidth"
         v-on:animCreated="handleAnimation"
       />
-      <div class="click" click='pageChange(2)'  @click="pageChange(2)"></div>
+      <div class="click" click="pageChange(2)" @click="pageChange(2)"></div>
     </div>
     <div class="sidebar" v-show="index>3">
-      <span v-for="Index in 7" :key='Index' :style="{'background-color':Index+3==index?'#5B08C3':'#fff'}" @click="pageChange(Index+3)" :click='`pageChange(${Index+3})`'></span>
+      <span
+        v-for="Index in 7"
+        :key="Index"
+        :style="{'background-color':Index+3==index?'#5B08C3':'#fff'}"
+        @click="pageChange(Index+3)"
+        :click="`pageChange(${Index+3})`"
+      ></span>
     </div>
     <div class="page svgCon1" ref="svgCon1">
-      <svg xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%">
+      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 800" width="100%" height="100%" style="pointer-event:none">
         <path ref="path1" fill="#fff" />
       </svg>
     </div>
     <div class="page svgCon2" ref="svgCon2">
-      <svg xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%">
+      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 800" width="100%" height="100%" style="pointer-event:none">
         <path ref="path2" fill="#fff" />
       </svg>
     </div>
-    <homepage :class="{pageChoice:index==2}" @showHomepage="showHomepage" ref='homepage'></homepage>
+    <homepage :class="{pageChoice:index==2}" @showHomepage="showHomepage" ref="homepage"></homepage>
     <studio :class="{pageChoice:index==3}"></studio>
     <front :class="{pageChoice:index==4}"></front>
     <end :class="{pageChoice:index==5}"></end>
-    <mobile :class="{pageChoice:index==6}"></mobile>
-    <embedded :class="{pageChoice:index==7}"></embedded>
-    <datas :class="{pageChoice:index==8}"></datas>
+    <datas :class="{pageChoice:index==6}"></datas>
+    <mobile :class="{pageChoice:index==7}"></mobile>
+    <embedded :class="{pageChoice:index==8}"></embedded>
     <game :class="{pageChoice:index==9}"></game>
     <design :class="{pageChoice:index==10}"></design>
     <div
@@ -495,20 +507,20 @@ export default {
       touchEndY: null
     };
   },
-  computed:{
-    rocketHeight: function(){
-      if($(window).width() <= 740) {
+  computed: {
+    rocketHeight: function() {
+      if ($(window).width() <= 740) {
         return 100;
-      } else if($(window).width() <= 1024) {
+      } else if ($(window).width() <= 1024) {
         return 150;
       } else {
         return 150;
       }
     },
-    rocketWidth: function(){
-      if($(window).width() <= 740) {
+    rocketWidth: function() {
+      if ($(window).width() <= 740) {
         return 40;
-      } else if($(window).width() <= 1024) {
+      } else if ($(window).width() <= 1024) {
         return 75;
       } else {
         return 75;
@@ -518,52 +530,60 @@ export default {
   mounted() {
     this.getBrowser();
     this.getEquipment();
-    console.log('当前浏览器是:'+this.$store.state.browserName);
-    if(this.$store.state.equipment!='phone') {
+    console.log("当前浏览器是:" + this.$store.state.browserName);
+    if (this.$store.state.equipment == "PC") {
       this.startD = this.$store.state.startD3;
       this.endD = this.$store.state.endD3;
+    } else if (this.$store.state.equipment == "ipad") {
+      this.startD = this.$store.state.startD4;
+      this.endD = this.$store.state.endD4;
     } else {
-      this.startD = this.$store.state.startD3;
-      this.endD = this.$store.state.endD3;
+      this.startD = this.$store.state.startD4;
+      this.endD = this.$store.state.endD4;
     }
-    
+
     this.$refs.path1.setAttribute("d", this.startD);
     this.$refs.path2.setAttribute("d", this.startD);
     setTimeout(() => {
       this.eventLock = false;
     }, 4600);
-    if (this.$store.state.browserName === 'firefox') {
-      util.addHandler(document, 'DOMMouseScroll', this.scrollChangePage);
+    if (this.$store.state.browserName === "firefox") {
+      util.addHandler(document, "DOMMouseScroll", this.scrollChangePage);
     } else {
-      util.addHandler(document, 'mousewheel', this.scrollChangePage);
+      util.addHandler(document, "mousewheel", this.scrollChangePage);
     }
-    let app = document.getElementById('app');
-    util.addHandler(app,'touchstart', (event) => {
+    let app = document.getElementById("app");
+    util.addHandler(app, "touchstart", event => {
       event.preventDefault();
       this.touchStartY = event.changedTouches[0].pageY;
     });
-    util.addHandler(app,'touchend', (event) => {
+    util.addHandler(app, "touchend", event => {
       event.preventDefault();
       this.touchEndY = event.changedTouches[0].pageY;
       this.touchChangePage();
     });
-    util.addHandler(window, 'resize', ()=>{
+    util.addHandler(window, "resize", () => {
       this.getEquipment();
-    })
+    });
   },
   watch: {
-    '$store.state.equipment': (newVal, oldVal) => {
-      if(oldVal) {
-        console.log('当前设备:' + newVal);
+    "$store.state.equipment": (newVal, oldVal) => {
+      if (oldVal) {
+        console.log("当前设备:" + newVal);
         window.location.reload();
       }
-    },
+    }
   },
   methods: {
     joinUs() {
       console.log("点击 JOIN US");
-      alert(`去${this.$store.state.equipment}端的报名表`)
       event.stopPropagation();
+      if (this.$store.state.equipment == 'PC') {
+        window.location.href='http://www.cxkball.club/web/QGManager'
+      } else {
+        window.location.href='http://www.cxkball.club/wap/QGManager'
+      }
+      
     },
     handleAnimation: function(anim) {
       this.anim = anim;
@@ -583,7 +603,7 @@ export default {
       event.preventDefault();
       let detail = event.wheelDelta || event.detail;
       let scrollTop = $(window).scrollTop;
-      if (this.$store.state.browserName === 'firefox') {
+      if (this.$store.state.browserName === "firefox") {
         detail = -detail;
       }
       let index = this.index;
@@ -605,9 +625,9 @@ export default {
       }
       let distance = this.touchEndY - this.touchStartY;
       if (distance < 50 && distance > -50) {
-        let clickFun = event.target.getAttribute('click');
-        console.log(clickFun)
-        if(clickFun) {
+        let clickFun = event.target.getAttribute("click");
+        console.log(clickFun);
+        if (clickFun) {
           this.clickFun(clickFun);
         }
         event.stopPropagation();
@@ -631,37 +651,43 @@ export default {
         return;
       }
       this.isMoving = true;
-      let nowIndex= this.index;
+      let nowIndex = this.index;
       this.index = nextIndex;
-      console.log(nowIndex+' to '+nextIndex);
+      console.log(nowIndex + " to " + nextIndex);
       let prePage = document.getElementsByClassName("page")[nowIndex];
       let nowPage = document.getElementsByClassName("page")[nextIndex];
-      let changeWay = 'next';
-      if(nextIndex > nowIndex) {
-        if(nextIndex == 10 && nowIndex == 2) {
-          changeWay = 'pre';
+      let changeWay = "next";
+      if (nextIndex > nowIndex) {
+        if (nextIndex == 10 && nowIndex == 2) {
+          changeWay = "pre";
         } else {
-          changeWay = 'next';
+          changeWay = "next";
         }
       } else {
-        if(nextIndex == 2 && nowIndex == 10) {
-          changeWay = 'next';
+        if (nextIndex == 2 && nowIndex == 10) {
+          changeWay = "next";
         } else {
-          changeWay = 'pre';
+          changeWay = "pre";
         }
       }
-      console.log(changeWay + ' Page');
-      if(changeWay == 'next') { // 下一页
-        prePage.style.animation = "prePageAnimation 2s";
-        this.$refs.svgCon1.style.animation = "svgConAnimation 2s";
-        this.$refs.path1.style.transition = "all 1.2s";
-      } else {      // 上一页
-        prePage.style.animation = "prePageAnimation2 2s";
-        this.$refs.svgCon2.style.animation = "svgConAnimation2 2s";
-        this.$refs.path2.style.transition = "all 1.2s";
+      
+      console.log(changeWay + " Page");
+      if (changeWay == "next") {
+        // 下一页
+        prePage.style.animation = "prePageAnimation 1.8s";
+        this.$refs.svgCon1.style.animation = "svgConAnimation 1.8s";
+        this.$refs.path1.style.transition = "d 1.2s"; 
+        //this.$refs.path1.setAttribute("d", this.endD);
+      } else {
+        // 上一页
+        prePage.style.animation = "prePageAnimation2 1.8s";
+        this.$refs.svgCon2.style.animation = "svgConAnimation2 1.8s";
+        this.$refs.path2.style.transition = "d 1.2s";
+        //this.$refs.path2.setAttribute("d", this.endD);
+        
       }
       setTimeout(() => {
-        if(changeWay == 'next') {
+        if (changeWay == "next") {
           this.$refs.path1.setAttribute("d", this.endD);
         } else {
           this.$refs.path2.setAttribute("d", this.endD);
@@ -670,69 +696,95 @@ export default {
       this.rocketOpacity = 0;
       setTimeout(() => {
         prePage.style.animation = "";
-        if(changeWay == 'next') {
+        if (changeWay == "next") {
           this.$refs.svgCon1.style.animation = "";
-          this.$refs.path1.style.transition = "all 0s";
+          this.$refs.path1.style.transition = "d 0s";
           this.$refs.path1.setAttribute("d", this.startD);
         } else {
           this.$refs.svgCon2.style.animation = "";
-          this.$refs.path2.style.transition = "all 0s";
+          this.$refs.path2.style.transition = "d 0s";
           this.$refs.path2.setAttribute("d", this.startD);
         }
-        this.$refs.path1.setAttribute("fill", this.getColor());
-        this.$refs.path2.setAttribute("fill", this.getColor());
+        this.$refs.path1.setAttribute("fill", this.getTopColor());
+        this.$refs.path2.setAttribute("fill", this.getBottomColor());
         this.isMoving = false;
         this.rocketOpacity = 1;
-      }, 2000);
+      }, 1820);
       if (event) {
         event.stopPropagation();
       }
     },
     clickFun(clickFun) {
-      if(clickFun == 'pageChange(2)') {
+      // 兼容ipad、手机的触摸点击
+      if (clickFun == "pageChange(2)") {
         this.pageChange(2);
-      } else if(clickFun == 'pageChange(3)') {
+      } else if (clickFun == "pageChange(3)") {
         this.pageChange(3);
-      } else if(clickFun == 'pageChange(4)') {
+      } else if (clickFun == "pageChange(4)") {
         this.pageChange(4);
-      } else if(clickFun == 'pageChange(5)') {
+      } else if (clickFun == "pageChange(5)") {
         this.pageChange(5);
-      } else if(clickFun == 'pageChange(6)') {
+      } else if (clickFun == "pageChange(6)") {
         this.pageChange(6);
-      } else if(clickFun == 'pageChange(7)') {
+      } else if (clickFun == "pageChange(7)") {
         this.pageChange(7);
-      } else if(clickFun == 'pageChange(8)') {
+      } else if (clickFun == "pageChange(8)") {
         this.pageChange(8);
-      } else if(clickFun == 'pageChange(9)') {
+      } else if (clickFun == "pageChange(9)") {
         this.pageChange(9);
-      } else if(clickFun == 'pageChange(10)') {
+      } else if (clickFun == "pageChange(10)") {
         this.pageChange(10);
-      } else if(clickFun == 'joinUs()') {
+      } else if (clickFun == "joinUs()") {
         this.joinUs();
-      } else if(clickFun == 'playVideo()') {
+      } else if (clickFun == "playVideo()") {
         this.$refs.homepage.playVideo();
       }
     },
-    getColor() {
+    getTopColor() {
       if (this.index == 2) {
-        return "#fff";
+        return '#fff';
       } else if (this.index == 3) {
-        return "#7A60BC";
+        return 'rgb(109, 55, 151)';
       } else if (this.index == 4) {
-        return "#64D6E2";
+        return "rgb(237, 62, 70)";
       } else if (this.index == 5) {
-        return "#A09DE5";
+        return "rgb(43, 139, 225)";
       } else if (this.index == 6) {
-        return "#A8CFDE";
+        return "rgb(236, 80, 44)";
       } else if (this.index == 7) {
-        return "#F6D861";
+        return "rgb(245, 235, 47)";
       } else if (this.index == 8) {
-        return "#3CCAD1";
+        return "rgb(55, 172, 71)";
       } else if (this.index == 9) {
-        return "#CFC9E5";
+        return "rgb(236, 80, 44)";
       } else if (this.index == 10) {
-        return "#FDBDDC";
+        return "rgb(252, 113, 164)";
+      } else {
+        return '#000'
       }
+    },
+    getBottomColor() {
+      if (this.index == 2) {
+        return '#fff';
+      } else if (this.index == 3) {
+        return 'rgb(159, 122, 190)';
+      } else if (this.index == 4) {
+        return "rgb(255, 156, 156)";
+      } else if (this.index == 5) {
+        return "rgb(151, 196, 254)";
+      } else if (this.index == 6) {
+        return "rgb(245, 194, 149)";
+      } else if (this.index == 7) {
+        return "rgb(217, 248, 171)";
+      } else if (this.index == 8) {
+        return "rgb(154, 210, 156)";
+      } else if (this.index == 9) {
+        return "rgb(209, 200, 140)";
+      } else if (this.index == 10) {
+        return "rgb(255, 216, 216)";
+      } else {
+        return "#000";
+      } 
     },
     getBrowser() {
       let UserAgent = navigator.userAgent.toLowerCase();
@@ -773,12 +825,12 @@ export default {
       this.$store.state.browserName = browser;
     },
     getEquipment() {
-      if($(window).width() <= 740) {
-        this.$store.state.equipment = 'phone';
-      } else if($(window).width() <= 1024) {
-        this.$store.state.equipment = 'ipad';
+      if ($(window).width() <= 740) {
+        this.$store.state.equipment = "phone";
+      } else if ($(window).width() <= 1024) {
+        this.$store.state.equipment = "ipad";
       } else {
-        this.$store.state.equipment = 'PC';
+        this.$store.state.equipment = "PC";
       }
     }
   }

@@ -58,11 +58,16 @@
   }
 }
 .design {
-  background-color: #FDBDDC;
+  //background-color: #FDBDDC;
+  background: linear-gradient(to top, rgb(252, 113, 164), rgb(255, 216, 216));
+  .bg {
+    z-index: 0;
+  }
 }
 </style>
 <template>
     <div class="design page">
+      <bg :floatIconUrl="floatIconUrl"></bg>
       <div class="name">设计</div>
       <img class="bgLogo" src="@/assets/设计@2x.png" />
       <div class="introduce">设计组的主要研究方向是手机游戏和网页的界面设计及交互，游戏原画设计以及平面设计。<p>我们旨在锻炼成员的创新能力、创意思想，培养成员的视觉设计和交互设计能力。除此之外，设计组也在着手3D模型的设计以及3D打印机的使用，产出的智能打印机和智能头盔已经斩获多个奖项，更是在挑战杯校赛中协助取得特等奖、一等奖的好成绩。</p></div>
@@ -70,6 +75,15 @@
 </template>
 
 <script>
+import bg from "@/components/public/bg.vue";
 export default {
-}
+  components: {
+    bg
+  },
+  data() {
+    return {
+      floatIconUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABFCAYAAAAcjSspAAAACXBIWXMAAAsSAAALEgHS3X78AAADpklEQVR42u2cPW8TSRjHf3YH92IfcNROFQeK+Btkr6BCQk4BBUJ4LYTSgIQQ/W2+AEKiQAihjBEVDf4Gt/4ASBsgybqKa+4Am97zUJjEXifrV+zbl/lL1q5nt9j56T8zzzOzOxkRYRnqvntniUiJ3q/w4zyHCIggP46IIFqDSEdEPERaaO2JiHfmyhV3Gc+aWRQU7Xl5gTIiZUQsRHKBig+ch0Dpl2ndO9e6IyIuInW0rp+9erUdCyj6/XsLERuRikB4xWeDEizTuoaI+uXaNTeSUPSHDxbgILJxXLnFQzm6v4GI8+vmphsJKPLxY0FAIbLBMITlQenD0dr+7fr11jx1ys4FZG/PAQ6BDaKhDeDw25s3ztKdIvv7JUQUsB5wxP/vlMF7d0VrO3fzprdwp8j+fhlwgXWirXXA7bx+XV4oFDk4sIG3QI54KAe8bb96ZS8EihwcKGCHeGqnXaupnwvF9xVQId6qfN3ZUT8Hiu/bCQByDObLy5f2fFB8vxzjJhPalL68eFGeDYrvlwBFMqU+P39emsUpKkajzCyjkpoOSrPpxCAOmTuO+fzsmTNZRNtsFoBDhsplMGIdOkY0ou3/H7geKNMa6XZXLty71xrnFEW6pEY3n2bTilByt7Qk8r+nT61RTnFIp5zToaTTJcdu+ffJE+s0p9ikW3YQSrOZT1AoP3MK8Onx4/ygU8oYHXMwUEZAsQyPPoeM+L4F/HPicnoi2t61bveo7K8sUDIGCahkoIRAKRgOARWMU0KckjMcAsplDYOTMlAMFAPFQDFQlgClYzAE1MkCnuEQkJcFWoZDQC3jlBCnGCgnoKyuuqaz7XeyFx89co+GZNfw6HM4glI3PPocDJRQKKurbaCWciC1iw8ftofDfJVyKOpk7tMbhRopBdL488EDNywhdFIKxQnPktPplsaF+/fdcVMHdsqg2KdNHTDklhawnRIg28MvAcKo731832PgtdEEriXvnt/aOnXNKzvGVknNiTqjuolwKMWil+D+xT6/teVND6UHpg5UEwakeu7u3ZFpzfiJ62JRJSgFqJ27c2ds5D7ZbH6xaCcATO2PanWi7mDiJY7M2pod46ZUzVcqE/ePU637ZNbWFLAZo1GpA2zmb9+eKtmdejEsc+lSnd4Lc7sRB7ILlHK3bk09VzTXZ/2yt+cg8ncEg7ft32/cmDm5nWvZNHP5sgOsRCiJbAAr8wCZ2ymDMrtijIJj9k8ZAcfstDNecdqT6TtiazqlWjdlCAAAAABJRU5ErkJggg==',
+    }
+  }
+};
 </script>

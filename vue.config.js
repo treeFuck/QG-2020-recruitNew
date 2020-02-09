@@ -15,5 +15,5 @@ module.exports = {
         //     }
         // }
     },
-    publicPath: '/admin/',
+    publicPath: './',
 }

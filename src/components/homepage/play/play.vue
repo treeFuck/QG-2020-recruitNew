@@ -42,8 +42,8 @@
     <lottie
       class="lottie"
       :options="defaultOptions"
-      :height="playHeight"
-      :width="playWidth"
+      :height="playSize"
+      :width="playSize"
       style="overflow:none"
       v-on:animCreated="handleAnimation"
     />
@@ -63,9 +63,9 @@ export default {
     };
   },
   computed: {
-    playHeight: function() {
+    playSize: function() {
       if($(window).width() <= 740) {
-        return 70;
+        return 80;
       } else if($(window).width() <= 1024) {
         return 100;
       } else {

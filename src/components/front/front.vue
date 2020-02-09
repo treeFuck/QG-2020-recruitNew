@@ -55,11 +55,15 @@
   }
 }
 .front {
-  background-color: #64d6e2;
+  background: linear-gradient(to top, rgb(237, 62, 70), rgb(255, 156, 156));
+  .bg {
+    z-index: 0;
+  }
 }
 </style>
 <template>
   <div class="front page">
+    <bg :floatIconUrl="floatIconUrl"></bg>
     <div class="name">前端</div>
     <img class="bgLogo" src="@/assets/前端@2x.png" />
     <div
@@ -69,5 +73,15 @@
 </template>
 
 <script>
-export default {};
+import bg from "@/components/public/bg.vue";
+export default {
+  components: {
+    bg
+  },
+  data() {
+    return {
+      floatIconUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEQAAAA8CAYAAADfYhweAAAACXBIWXMAAAsSAAALEgHS3X78AAADP0lEQVRo3u2bX07iUBTGP4nvsgPKCmBWYF2BbsBQjfFBXxoTCRpJqkaNUfQKyt+SsBOdFQw7sLODuoGeeSiN0KCFett7285Jbi5poWkOv3M+vtOwQkQQHvf3CoiA42NL9K2sQo4wJrsm+kZWhBPSaKggegURQLSBavVN5O3kJKLD/zqDCXl40ACsTx1Zx+2tls2SeXzMg2gMosKkXLz1F0Rl1Gp21gjRARTmHC9MzmWIEMYUEL37yPCvIk5OrKwQwji9JwWEPD1Ny2zQ2sDp6VvaCWERvTeBCWk2dQClJT5RwtWVns6SabXyILJAtLZguXjrA46joF6300aIAWAtxOfW4vwFGw8hrZYC4H1JMj6X4wBAEfW6lRZCRpJcQ4KEPD+rPr8SNtZxfq6mgZCRpNcSkJCXF+MLvxI2CjCMSBtsdE213Z6VWQA/bKru7snwxYWdNEJYSJldRIZZsghpt8sA/sx8y/wI8fZfuLwcJ4WQODwIS0bJdDpbnGQ2WIbPzrbkLplOJw/AHQv6S4R/ybjjRscp4/ralpUQnbPMBssw53EjP0K6XQVEYwDzZTYaQgDH+QBRGTc3lmyEhHWzPGTYkKtkul0VQAXiooJaTZWJEAPiw5AjIb2eFpPMBstwtaqJbaq9Xh6A61e8punfo2+q/gar4O7OFkWILqiRftdgdTGE9Pvu07evyBBDiLcX0WhYcRPCIG+weEum31cBbEqckE0cHalxEjKC/DGKJyGDQdx+JbzP0fWlG+xyTXUwCJZZOZrqpww7joJm046KEFF+JTafszghg4EC4H1hMuQgxHtdRKtl8SZkhOTGiG/JmGZcY8HofM7h4RZPQhiSH4xPQkzTSIjMBsvwwUFgg/2+qZqmK7PTY8FkNtXZp37drh2WkKievomUYRauZEyzDLFjwaiigv39chhCGNIbbLmEDIdawmU2WIb39rTFEjIc5iHH0DjqMLC7m1+EkKS42Z/L8JxxY85HhwKB/0QQEDp2dpTvCEmam+XuhnNTdKgpldlgGa5U1HmEMGQ32GxCXJktZTghJWxva66XmfYr0+H3OOnwMp/H/Ocm48Yc5Hv6JrLB6qsAVAC//+cDAKD+A1wX1aGUbt7LAAAAAElFTkSuQmCC',
+    }
+  }
+};
 </script>

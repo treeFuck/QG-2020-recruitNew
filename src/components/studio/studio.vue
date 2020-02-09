@@ -20,6 +20,7 @@
       font-size: 0.22rem;
       line-height: 0.3rem;
       font-weight: lighter;
+      font-family: introduce;
       span {
         color: #000;
         font-weight: bold;
@@ -83,6 +84,7 @@
       font-size: 0.18rem;
       line-height: 0.22rem;
       font-weight: lighter;
+      font-family: introduce;
       span {
         color: #000;
         font-weight: bold;
@@ -140,7 +142,8 @@
       text-indent: 2em;
       font-size: 0.12rem;
       line-height: 0.16rem;
-      font-weight: lighter;
+      // font-weight: lighter;
+      font-family: introduce;
       span {
         color: #000;
         font-weight: bold;
@@ -181,7 +184,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: #7a60bc;
+  background: linear-gradient(to top, rgb(109, 55, 151), rgb(159, 122, 190));
   .bottom {
     width: 100%;
     color: #fff;
