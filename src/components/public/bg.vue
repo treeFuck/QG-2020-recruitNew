@@ -182,6 +182,7 @@
 export default  {
     props: {
         floatIconUrl: String,
+        index: Number
     },
     data() {
         return {
@@ -191,11 +192,25 @@ export default  {
             num4: 12,
             num5: 15,
             num6: 18,
+            timeoutID1: null,
+            timeoutID2: null,
+            timeoutID3: null,
+            timeoutID4: null,
+            timeoutID5: null,
+            timeoutID6: null,
             activeCount: 23,
         }
     },
-  mounted() {
-    setTimeout(() => {
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.set();
+  //   }, 10);
+  // },
+  methods: {
+    getRandomNumberByRange() {
+        return Math.floor(Math.random() * (100))
+    },
+    set() {
       let random1 = this.getRandomNumberByRange() % this.activeCount,
           random2 = this.getRandomNumberByRange() % this.activeCount,
           random3 = this.getRandomNumberByRange() % this.activeCount,
@@ -208,40 +223,51 @@ export default  {
       this.num4 = random4 == this.num4 ? (random4 + 1) % this.activeCount : random4;
       this.num5 = random5 == this.num5 ? (random5 + 1) % this.activeCount : random5;
       this.num6 = random6 == this.num6 ? (random6 + 1) % this.activeCount : random6;
-      setInterval(() => {
+      this.timeoutID1 = window.setInterval(() => {
+        console.log("秀儿秀儿");
         let random = this.getRandomNumberByRange() % this.activeCount;
         this.num1 = random == this.num1 ? (random + 1) % this.activeCount : random;
       }, 5000)
-      setInterval(() => {
+      this.timeoutID2 = window.setInterval(() => {
         let random = this.getRandomNumberByRange() % this.activeCount;
         this.num2 = random == this.num2 ? (random + 1) % this.activeCount : random;
       }, 6000)
-      setInterval(() => {
+      this.timeoutID3 = window.setInterval(() => {
         let random = this.getRandomNumberByRange() % this.activeCount;
         this.num3 = random == this.num3 ? (random + 1) % this.activeCount : random;
       }, 7000)
-      setInterval(() => {
+      this.timeoutID4 = window.setInterval(() => {
         let random = this.getRandomNumberByRange() % this.activeCount;
         this.num4 = random == this.num4 ? (random + 1) % this.activeCount : random;
       }, 8000)
-      setInterval(() => {
+      this.timeoutID5 = window.setInterval(() => {
         let random = this.getRandomNumberByRange() % this.activeCount;
         this.num5 = random == this.num5 ? (random + 1) % this.activeCount : random;
       }, 9000)
-      setInterval(() => {
+      this.timeoutID6 = window.setInterval(() => {
         let random = this.getRandomNumberByRange() % this.activeCount;
         this.num6 = random == this.num6 ? (random + 1) % this.activeCount : random;
-      }, 10000)
-
-    }, 10);
-  },
-  methods: {
-    getRandomNumberByRange() {
-        return Math.floor(Math.random() * (100))
+      }, 10000);
     },
     destroy() {
+      window.clearInterval(this.timeoutID1);
+      window.clearInterval(this.timeoutID2);
+      window.clearInterval(this.timeoutID3);
+      window.clearInterval(this.timeoutID4);
+      window.clearInterval(this.timeoutID5);
+      window.clearInterval(this.timeoutID6);
     }
-  }
-  
+  },
+  watch: {
+    "$store.state.index": function(newVal, oldVal) {
+      if (oldVal) {
+        if(newVal == this.index) {
+          this.set();
+        } else {
+          this.destroy();
+        }
+      }
+    }
+  },
 }
 </script>

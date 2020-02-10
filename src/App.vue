@@ -572,11 +572,16 @@ export default {
         console.log("当前设备:" + newVal);
         window.location.reload();
       }
+    },
+    'index': function(newVal, oldVal) {
+      if (oldVal) {
+        this.$store.state.index = newVal;
+        console.log(`当前在第 ${newVal} 页`);
+      }
     }
   },
   methods: {
     joinUs() {
-      console.log("点击 JOIN US");
       event.stopPropagation();
       if (this.$store.state.equipment == 'PC') {
         window.location.href='http://www.cxkball.club/web/QGManager'
@@ -676,13 +681,13 @@ export default {
         // 下一页
         prePage.style.animation = "prePageAnimation 1.8s";
         this.$refs.svgCon1.style.animation = "svgConAnimation 1.8s";
-        this.$refs.path1.style.transition = "d 1.2s"; 
+        this.$refs.path1.style.transition = "d 1.5s"; 
         //this.$refs.path1.setAttribute("d", this.endD);
       } else {
         // 上一页
         prePage.style.animation = "prePageAnimation2 1.8s";
         this.$refs.svgCon2.style.animation = "svgConAnimation2 1.8s";
-        this.$refs.path2.style.transition = "d 1.2s";
+        this.$refs.path2.style.transition = "d 1.5s";
         //this.$refs.path2.setAttribute("d", this.endD);
         
       }
@@ -752,13 +757,13 @@ export default {
       } else if (this.index == 6) {
         return "rgb(236, 80, 44)";
       } else if (this.index == 7) {
-        return "rgb(245, 235, 47)";
+        return "#1D90B7";
       } else if (this.index == 8) {
         return "rgb(55, 172, 71)";
       } else if (this.index == 9) {
-        return "rgb(236, 80, 44)";
+        return "#7A69B9";
       } else if (this.index == 10) {
-        return "rgb(252, 113, 164)";
+        return "#FC4380";
       } else {
         return '#000'
       }
@@ -775,13 +780,13 @@ export default {
       } else if (this.index == 6) {
         return "rgb(245, 194, 149)";
       } else if (this.index == 7) {
-        return "rgb(217, 248, 171)";
+        return "#A8CFDE";
       } else if (this.index == 8) {
         return "rgb(154, 210, 156)";
       } else if (this.index == 9) {
-        return "rgb(209, 200, 140)";
+        return "#CFC9E5";
       } else if (this.index == 10) {
-        return "rgb(255, 216, 216)";
+        return "#F8A0CB";
       } else {
         return "#000";
       } 

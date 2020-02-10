@@ -11,9 +11,10 @@
     width: 8rem;
   }
   .introduce {
-    top: 4rem;
+    top: 50%;
     right: 2.6rem;
     width: 14rem;
+    transform: translateY(-50%);
   }
 }
 // ipad
@@ -64,7 +65,7 @@
 </style>
 <template>
   <div class="datas page">
-    <bg :floatIconUrl="floatIconUrl"></bg>
+    <bg :index='6' :floatIconUrl="floatIconUrl"></bg>
     <div class="name">数据挖掘</div>
     <img class="bgLogo" src="@/assets/数据挖掘@2x.png" />
     <div

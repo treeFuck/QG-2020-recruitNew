@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     playVideo() {
-      alert("点击播放");
+      alert("敬请期待");
       event.stopPropagation();
     },
     handleAnimation: function(anim) {

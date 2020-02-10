@@ -11,9 +11,10 @@
     width: 8.5rem;
   }
   .introduce {
-    top: 2.9rem;
+    top: 50%;
     right: 2.95rem;
     width: 13.3rem;
+    transform: translateY(-50%);
   }
 }
 // ipad
@@ -63,7 +64,7 @@
 </style>
 <template>
   <div class="front page">
-    <bg :floatIconUrl="floatIconUrl"></bg>
+    <bg :index="4" :floatIconUrl="floatIconUrl"></bg>
     <div class="name">前端</div>
     <img class="bgLogo" src="@/assets/前端@2x.png" />
     <div

@@ -13,10 +13,11 @@
     width: 5.6rem;
   }
   .introduce {
-    top: 3.6rem;
+    top: 50%;
     left: 1.9rem;
     width: 8.2rem;
     font-size: 0.4rem;
+    transform: translateY(-50%);
   }
 }
 // ipad
@@ -59,7 +60,7 @@
 }
 .game {
   //background-color: #CFC9E5;
-  background: linear-gradient(to top, rgb(236, 80, 44), rgb(209, 200, 140));
+  background: linear-gradient(to top, #7A69B9, #CFC9E5);
   .bg {
     z-index: 0;
   }
@@ -67,7 +68,7 @@
 </style>
 <template>
     <div class="game page">
-      <bg :floatIconUrl="floatIconUrl"></bg>
+      <bg :index="9" :floatIconUrl="floatIconUrl"></bg>
       <div class="name">图形</div>
       <img class="bgLogo" src="@/assets/图形@2x.png" />
       <div class="introduce">图形渲染组（前身手游组）的研究方向为计算机图形学与AR/VR开发。<p>小组以DirectX、Unity3D作为主要学习方向，DirectX用于理解底层图形渲染原理，Unity3D引擎用于开发AR/VR应用程序、仿真平台以及其他交互式媒体应用程序。</p></div>

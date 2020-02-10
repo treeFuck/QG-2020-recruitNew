@@ -13,10 +13,11 @@
     width: 5.6rem;
   }
   .introduce {
-    top: 2.9rem;
+    top: 50%;
     right: 1.6rem;
     width: 8.5rem;
     font-size: 0.4rem;
+    transform: translateY(-50%);
   }
 }
 // ipad
@@ -59,7 +60,7 @@
 }
 .design {
   //background-color: #FDBDDC;
-  background: linear-gradient(to top, rgb(252, 113, 164), rgb(255, 216, 216));
+  background: linear-gradient(to top, #FC4380, #F8A0CB);
   .bg {
     z-index: 0;
   }
@@ -67,7 +68,7 @@
 </style>
 <template>
     <div class="design page">
-      <bg :floatIconUrl="floatIconUrl"></bg>
+      <bg :index="10" :floatIconUrl="floatIconUrl"></bg>
       <div class="name">设计</div>
       <img class="bgLogo" src="@/assets/设计@2x.png" />
       <div class="introduce">设计组的主要研究方向是手机游戏和网页的界面设计及交互，游戏原画设计以及平面设计。<p>我们旨在锻炼成员的创新能力、创意思想，培养成员的视觉设计和交互设计能力。除此之外，设计组也在着手3D模型的设计以及3D打印机的使用，产出的智能打印机和智能头盔已经斩获多个奖项，更是在挑战杯校赛中协助取得特等奖、一等奖的好成绩。</p></div>
