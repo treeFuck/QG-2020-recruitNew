@@ -77,13 +77,14 @@
 
 <script>
 import bg from "@/components/public/bg.vue";
+import mobileBg from "@/assets/mobile_bg.png";
 export default {
   components: {
     bg
   },
   data() {
     return {
-      floatIconUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAAkCAYAAAAq23xmAAAACXBIWXMAAAsSAAALEgHS3X78AAAAhklEQVRo3u3QWw6CMBQE0NH978QNmhg7flAIArqCMz/tfZSQc3s9H81leq67drvb6WF+nDVpd++Wetn8VY+v+zZrk8zZ2p9nMrb7uTfmP4z57etzv9++kzT3yN8AAgQIECBAgAABEkCAAAECBAgQIAEECBAgQIAAARJAgAABAgQIECBAcp0PObFhbyi4/qQAAAAASUVORK5CYII=',
+      floatIconUrl: mobileBg,
     }
   }
 };
