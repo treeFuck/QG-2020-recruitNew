@@ -1,5 +1,5 @@
 <style lang="scss" scoped>
-.bg{
+.bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,7 +23,7 @@
     .active1 {
       transform: translate(00vw, 20vh) rotateZ(0deg);
     }
-    
+
     .active2 {
       transform: translate(00vw, 40vh) rotateZ(39deg);
     }
@@ -117,7 +117,8 @@
       img {
         width: 100%;
       }
-    }.icon5 {
+    }
+    .icon5 {
       width: 18vh;
       transition: 9s all linear;
       img {
@@ -138,69 +139,51 @@
 <template>
   <div class="bg">
     <div class="float-layer">
-      <div
-        class="float-icons icon1"
-        :class="'active' + num1"
-      >
-        <img :src="floatIconUrl" alt="">
+      <div class="float-icons icon1" :class="'active' + num1">
+        <img :src="floatIconUrl" alt />
       </div>
-      <div
-        class="float-icons icon2"
-        :class="'active' + num2"
-      >
-        <img :src="floatIconUrl" alt="">
+      <div class="float-icons icon2" :class="'active' + num2">
+        <img :src="floatIconUrl" alt />
       </div>
-      <div
-        class="float-icons icon3"
-        :class="'active' + num3"
-      >
-        <img :src="floatIconUrl" alt="">
+      <div class="float-icons icon3" :class="'active' + num3">
+        <img :src="floatIconUrl" alt />
       </div>
-      <div
-        class="float-icons icon4"
-        :class="'active' + num4"
-      >
-        <img :src="floatIconUrl" alt="">
+      <div class="float-icons icon4" :class="'active' + num4">
+        <img :src="floatIconUrl" alt />
       </div>
-      <div
-        class="float-icons icon5"
-        :class="'active' + num5"
-      >
-        <img :src="floatIconUrl" alt="">
+      <div class="float-icons icon5" :class="'active' + num5">
+        <img :src="floatIconUrl" alt />
       </div>
-      <div
-        class="float-icons icon6"
-        :class="'active' + num6"
-      >
-        <img :src="floatIconUrl" alt="">
+      <div class="float-icons icon6" :class="'active' + num6">
+        <img :src="floatIconUrl" alt />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default  {
-    props: {
-        floatIconUrl: String,
-        index: Number
-    },
-    data() {
-        return {
-            num1: 3,
-            num2: 6,
-            num3: 9,
-            num4: 12,
-            num5: 15,
-            num6: 18,
-            timeoutID1: null,
-            timeoutID2: null,
-            timeoutID3: null,
-            timeoutID4: null,
-            timeoutID5: null,
-            timeoutID6: null,
-            activeCount: 23,
-        }
-    },
+export default {
+  props: {
+    floatIconUrl: String,
+    index: Number
+  },
+  data() {
+    return {
+      num1: 3,
+      num2: 6,
+      num3: 9,
+      num4: 12,
+      num5: 15,
+      num6: 18,
+      timeoutID: null,
+      // timeoutID2: null,
+      // timeoutID3: null,
+      // timeoutID4: null,
+      // timeoutID5: null,
+      // timeoutID6: null,
+      activeCount: 23
+    };
+  },
   // mounted() {
   //   setTimeout(() => {
   //     this.set();
@@ -208,66 +191,76 @@ export default  {
   // },
   methods: {
     getRandomNumberByRange() {
-        return Math.floor(Math.random() * (100))
+      return Math.floor(Math.random() * 100);
     },
     set() {
       let random1 = this.getRandomNumberByRange() % this.activeCount,
-          random2 = this.getRandomNumberByRange() % this.activeCount,
-          random3 = this.getRandomNumberByRange() % this.activeCount,
-          random4 = this.getRandomNumberByRange() % this.activeCount,
-          random5 = this.getRandomNumberByRange() % this.activeCount,
-          random6 = this.getRandomNumberByRange() % this.activeCount;
-      this.num1 = random1 == this.num1 ? (random1 + 1) % this.activeCount : random1;
-      this.num2 = random2 == this.num2 ? (random2 + 1) % this.activeCount : random2;
-      this.num3 = random3 == this.num3 ? (random3 + 1) % this.activeCount : random3;
-      this.num4 = random4 == this.num4 ? (random4 + 1) % this.activeCount : random4;
-      this.num5 = random5 == this.num5 ? (random5 + 1) % this.activeCount : random5;
-      this.num6 = random6 == this.num6 ? (random6 + 1) % this.activeCount : random6;
-      this.timeoutID1 = window.setInterval(() => {
-        console.log("秀儿秀儿");
+        random2 = this.getRandomNumberByRange() % this.activeCount,
+        random3 = this.getRandomNumberByRange() % this.activeCount,
+        random4 = this.getRandomNumberByRange() % this.activeCount,
+        random5 = this.getRandomNumberByRange() % this.activeCount,
+        random6 = this.getRandomNumberByRange() % this.activeCount;
+      this.num1 =
+        random1 == this.num1 ? (random1 + 1) % this.activeCount : random1;
+      this.num2 =
+        random2 == this.num2 ? (random2 + 1) % this.activeCount : random2;
+      this.num3 =
+        random3 == this.num3 ? (random3 + 1) % this.activeCount : random3;
+      this.num4 =
+        random4 == this.num4 ? (random4 + 1) % this.activeCount : random4;
+      this.num5 =
+        random5 == this.num5 ? (random5 + 1) % this.activeCount : random5;
+      this.num6 =
+        random6 == this.num6 ? (random6 + 1) % this.activeCount : random6;
+      let timeCount = 0;
+      this.timeoutID = window.setInterval(()=>{
+        timeCount++;
         let random = this.getRandomNumberByRange() % this.activeCount;
-        this.num1 = random == this.num1 ? (random + 1) % this.activeCount : random;
-      }, 5000)
-      this.timeoutID2 = window.setInterval(() => {
-        let random = this.getRandomNumberByRange() % this.activeCount;
-        this.num2 = random == this.num2 ? (random + 1) % this.activeCount : random;
-      }, 6000)
-      this.timeoutID3 = window.setInterval(() => {
-        let random = this.getRandomNumberByRange() % this.activeCount;
-        this.num3 = random == this.num3 ? (random + 1) % this.activeCount : random;
-      }, 7000)
-      this.timeoutID4 = window.setInterval(() => {
-        let random = this.getRandomNumberByRange() % this.activeCount;
-        this.num4 = random == this.num4 ? (random + 1) % this.activeCount : random;
-      }, 8000)
-      this.timeoutID5 = window.setInterval(() => {
-        let random = this.getRandomNumberByRange() % this.activeCount;
-        this.num5 = random == this.num5 ? (random + 1) % this.activeCount : random;
-      }, 9000)
-      this.timeoutID6 = window.setInterval(() => {
-        let random = this.getRandomNumberByRange() % this.activeCount;
-        this.num6 = random == this.num6 ? (random + 1) % this.activeCount : random;
-      }, 10000);
+        if (timeCount%5==0) {
+          this.num1 =
+          random == this.num1 ? (random + 1) % this.activeCount : random;
+        } 
+        if(timeCount%6==0) {
+          this.num2 =
+          random == this.num2 ? (random + 1) % this.activeCount : random;
+        } 
+        if(timeCount%7==0) {
+          this.num3 =
+          random == this.num3 ? (random + 1) % this.activeCount : random;
+        } 
+        if(timeCount%8==0) {
+          this.num4 =
+          random == this.num4 ? (random + 1) % this.activeCount : random;
+        } 
+        if(timeCount%9==0) {
+          this.num5 =
+          random == this.num5 ? (random + 1) % this.activeCount : random;
+        } 
+        if(timeCount%10==0) {
+          this.num6 =
+          random == this.num6 ? (random + 1) % this.activeCount : random;
+        }
+      }, 1000)
     },
     destroy() {
-      window.clearInterval(this.timeoutID1);
-      window.clearInterval(this.timeoutID2);
-      window.clearInterval(this.timeoutID3);
-      window.clearInterval(this.timeoutID4);
-      window.clearInterval(this.timeoutID5);
-      window.clearInterval(this.timeoutID6);
+      window.clearInterval(this.timeoutID);
+      // window.clearInterval(this.timeoutID2);
+      // window.clearInterval(this.timeoutID3);
+      // window.clearInterval(this.timeoutID4);
+      // window.clearInterval(this.timeoutID5);
+      // window.clearInterval(this.timeoutID6);
     }
   },
   watch: {
     "$store.state.index": function(newVal, oldVal) {
       if (oldVal) {
-        if(newVal == this.index) {
+        if (newVal == this.index) {
           this.set();
         } else {
           this.destroy();
         }
       }
     }
-  },
-}
+  }
+};
 </script>

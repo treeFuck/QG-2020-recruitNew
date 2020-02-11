@@ -38,7 +38,7 @@
     width: 100%;
     height: 100%;
     background-image: url("../../../assets/QGlogo.png");
-    background-size: 0%;
+    background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
     transition: all 1s;
@@ -48,7 +48,7 @@
 </style>
 <template>
   <div class="QGlogo">
-    <div ref="show" class="show" :style="{'background-size': bgSize}"></div>
+    <div ref="show" class="show" :style="{'transform': scale}"></div>
     <lottie
       class="lottie"
       :options="defaultOptions"
@@ -67,7 +67,7 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      bgSize: "0%",
+      scale: "scale(0)",
       defaultOptions: { animationData: QGlogo, autoplay: false, loop: false },
     };
   },
@@ -103,7 +103,7 @@ export default {
     setTimeout(() => {
       this.play();
       setTimeout(() => {
-        this.bgSize = "100%";
+        this.scale = "scale(1)";
       }, 3000);
     }, 100);
   },

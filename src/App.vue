@@ -3,11 +3,11 @@
   font-family: name;
   src: url(./assets/优设标题黑.ttf);
 }
+
 @font-face {
   font-family: introduce;
   src: url(./assets/思源黑体R.ttf);
 }
-// 思源黑体R.ttf
 * {
   padding: 0;
   margin: 0;
@@ -67,7 +67,7 @@ body {
     li:nth-child(2) {
       background-image: url("./assets/后台.png");
     }
-     li:nth-child(3) {
+    li:nth-child(3) {
       background-image: url("./assets/数据挖掘.png");
     }
     li:nth-child(4) {
@@ -93,7 +93,7 @@ body {
     position: fixed;
     z-index: 300;
     cursor: pointer;
-    transition: all 0.5s;
+    transition: all 0.3s;
     .click {
       position: absolute;
       top: 0;
@@ -105,7 +105,8 @@ body {
   }
   .sidebar {
     position: fixed;
-    z-index: 400;
+    z-index: 300;
+    transition: all 1s;
     span {
       display: block;
       cursor: pointer;
@@ -114,8 +115,7 @@ body {
     }
   }
   .page {
-    position: absolute;
-    z-index: 1;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -140,13 +140,15 @@ body {
   }
   .svgCon1 {
     // svg容器
-    height: 100vh;
-    transform: translateY(100vh);
+    //height: 100%;
+    z-index: 300;
+    transform: translateY(100%);
   }
   .svgCon2 {
     // svg容器
-    height: 100vh;
-    transform: rotate(180deg) translateY(100vh);
+    //height: 100vh;
+    z-index: 300;
+    transform: rotate(180deg) translateY(100%);
   }
 }
 
@@ -322,58 +324,38 @@ body {
 @keyframes prePageAnimation {
   0% {
     z-index: 300;
-    transform: translateY(0vh);
+    transform: translateY(0%);
   }
-  // 50% {
-  //   z-index: 300;
-  //   transform: translateY(-125vh);
-  // }
   100% {
     z-index: 300;
-    transform: translateY(-200vh);
+    transform: translateY(-200%);
   }
 }
 @keyframes svgConAnimation {
   0% {
-    z-index: 300;
-    transform: translateY(100vh);
+    transform: translateY(100%);
   }
-  // 50% {
-  //   z-index: 300;
-  //   transform: translateY(-25vh);
-  // }
   100% {
-    z-index: 300;
-    transform: translateY(-100vh);
+    transform: translateY(-100%);
   }
 }
 // 上一页动画
 @keyframes prePageAnimation2 {
   0% {
     z-index: 300;
-    transform: translateY(0vh);
+    transform: translateY(0%);
   }
-  // 50% {
-  //   z-index: 300;
-  //   transform: translateY(125vh);
-  // }
   100% {
     z-index: 300;
-    transform: translateY(200vh);
+    transform: translateY(200%);
   }
 }
 @keyframes svgConAnimation2 {
   0% {
-    z-index: 300;
-    transform: rotate(180deg) translateY(100vh);
+    transform: rotate(180deg) translateY(100%);
   }
-  // 50% {
-  //   z-index: 300;
-  //   transform: rotate(180deg) translateY(25vh);
-  // }
   100% {
-    z-index: 300;
-    transform: rotate(180deg) translateY(-100vh);
+    transform: rotate(180deg) translateY(-100%);
   }
 }
 </style>
@@ -420,7 +402,7 @@ body {
       />
       <div class="click" click="pageChange(2)" @click="pageChange(2)"></div>
     </div>
-    <div class="sidebar" v-show="index>3">
+    <div class="sidebar" :style="{opacity:index>3?1:0}">
       <span
         v-for="Index in 7"
         :key="Index"
@@ -430,12 +412,26 @@ body {
       ></span>
     </div>
     <div class="page svgCon1" ref="svgCon1">
-      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 800" width="100%" height="100%" style="pointer-event:none">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        viewBox="0 0 1440 800"
+        width="100%"
+        height="100%"
+        style="pointer-event:none"
+      >
         <path ref="path1" fill="#fff" />
       </svg>
     </div>
     <div class="page svgCon2" ref="svgCon2">
-      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 800" width="100%" height="100%" style="pointer-event:none">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        viewBox="0 0 1440 800"
+        width="100%"
+        height="100%"
+        style="pointer-event:none"
+      >
         <path ref="path2" fill="#fff" />
       </svg>
     </div>
@@ -528,25 +524,25 @@ export default {
     }
   },
   mounted() {
+    // 获取浏览器
     this.getBrowser();
+    // 获取设备
     this.getEquipment();
-    console.log("当前浏览器是:" + this.$store.state.browserName);
+    // svg的path赋值属性d
     if (this.$store.state.equipment == "PC") {
       this.startD = this.$store.state.startD3;
       this.endD = this.$store.state.endD3;
-    } else if (this.$store.state.equipment == "ipad") {
-      this.startD = this.$store.state.startD4;
-      this.endD = this.$store.state.endD4;
     } else {
       this.startD = this.$store.state.startD4;
       this.endD = this.$store.state.endD4;
     }
-
     this.$refs.path1.setAttribute("d", this.startD);
     this.$refs.path2.setAttribute("d", this.startD);
+    // 前面4.6秒，禁止一切事件
     setTimeout(() => {
       this.eventLock = false;
     }, 4600);
+    // 初始化事件
     if (this.$store.state.browserName === "firefox") {
       util.addHandler(document, "DOMMouseScroll", this.scrollChangePage);
     } else {
@@ -573,7 +569,7 @@ export default {
         window.location.reload();
       }
     },
-    'index': function(newVal, oldVal) {
+    index: function(newVal, oldVal) {
       if (oldVal) {
         this.$store.state.index = newVal;
         console.log(`当前在第 ${newVal} 页`);
@@ -581,22 +577,21 @@ export default {
     }
   },
   methods: {
+    // 跳转到报名表
     joinUs() {
       event.stopPropagation();
-      if (this.$store.state.equipment == 'PC') {
-        window.location.href='http://www.cxkball.club/web/QGManager'
+      if (this.$store.state.equipment == "PC") {
+        window.location.href = "http://www.cxkball.club/web/QGManager";
       } else {
-        window.location.href='http://www.cxkball.club/wap/QGManager'
+        window.location.href = "http://www.cxkball.club/wap/QGManager";
       }
-      
     },
-    handleAnimation: function(anim) {
-      this.anim = anim;
-    },
+    // 主页动画
     showHomepage() {
       this.homepageShow = true;
       this.scrollDownOpacity = 1;
     },
+    // 鼠标滚球事件
     scrollChangePage() {
       // 鼠标滚轮事件的监听事件
       if (this.eventLock) {
@@ -620,6 +615,7 @@ export default {
       this.pageChange(index);
       event.stopPropagation();
     },
+    // 触摸滚动事件
     touchChangePage() {
       // 触摸滚动事件
       if (this.eventLock) {
@@ -648,6 +644,7 @@ export default {
       this.pageChange(index);
       event.stopPropagation();
     },
+    // 换页到nextIndex
     pageChange(nextIndex) {
       if (this.eventLock) {
         return;
@@ -655,50 +652,37 @@ export default {
       if (this.isMoving) {
         return;
       }
+      // 初始化
       this.isMoving = true;
       let nowIndex = this.index;
       this.index = nextIndex;
-      console.log(nowIndex + " to " + nextIndex);
       let prePage = document.getElementsByClassName("page")[nowIndex];
       let nowPage = document.getElementsByClassName("page")[nextIndex];
-      let changeWay = "next";
-      if (nextIndex > nowIndex) {
-        if (nextIndex == 10 && nowIndex == 2) {
-          changeWay = "pre";
-        } else {
-          changeWay = "next";
-        }
-      } else {
-        if (nextIndex == 2 && nowIndex == 10) {
-          changeWay = "next";
-        } else {
-          changeWay = "pre";
-        }
-      }
-      
-      console.log(changeWay + " Page");
+      let changeWay = this.getChangeWay(nextIndex, nowIndex);
+      // 换页动画开始
       if (changeWay == "next") {
         // 下一页
-        prePage.style.animation = "prePageAnimation 1.8s";
-        this.$refs.svgCon1.style.animation = "svgConAnimation 1.8s";
-        this.$refs.path1.style.transition = "d 1.5s"; 
-        //this.$refs.path1.setAttribute("d", this.endD);
+        prePage.style.animation = "prePageAnimation 1.5s ease-in-out";
+        this.$refs.svgCon1.style.animation = "svgConAnimation 1.5s ease-in-out";
+        if(this.$store.state.equipment == 'PC') {
+          this.$refs.path1.style.transition = "d 1.5s ease-in-out";
+        } else {
+          this.$refs.path1.style.transition = "d 1.2s ease-in-out";
+        }
+        window.requestAnimationFrame(()=>{this.$refs.path1.setAttribute("d", this.endD)})
       } else {
         // 上一页
-        prePage.style.animation = "prePageAnimation2 1.8s";
-        this.$refs.svgCon2.style.animation = "svgConAnimation2 1.8s";
-        this.$refs.path2.style.transition = "d 1.5s";
-        //this.$refs.path2.setAttribute("d", this.endD);
-        
-      }
-      setTimeout(() => {
-        if (changeWay == "next") {
-          this.$refs.path1.setAttribute("d", this.endD);
+        prePage.style.animation = "prePageAnimation2 1.5s ease-in-out";
+        this.$refs.svgCon2.style.animation = "svgConAnimation2 1.5s ease-in-out";
+        if(this.$store.state.equipment == 'PC') {
+          this.$refs.path2.style.transition = "d 1.5s ease-in-out";
         } else {
-          this.$refs.path2.setAttribute("d", this.endD);
+          this.$refs.path2.style.transition = "d 1.2s ease-in-out";
         }
-      }, 100);
+        window.requestAnimationFrame(()=>{this.$refs.path2.setAttribute("d", this.endD)})
+      }
       this.rocketOpacity = 0;
+      // 换页动画结束，样式复位
       setTimeout(() => {
         prePage.style.animation = "";
         if (changeWay == "next") {
@@ -719,8 +703,8 @@ export default {
         event.stopPropagation();
       }
     },
+    // 兼容ipad、手机的触摸点击
     clickFun(clickFun) {
-      // 兼容ipad、手机的触摸点击
       if (clickFun == "pageChange(2)") {
         this.pageChange(2);
       } else if (clickFun == "pageChange(3)") {
@@ -745,11 +729,28 @@ export default {
         this.$refs.homepage.playVideo();
       }
     },
+    // 换页方式（上一页还是下一页）
+    getChangeWay(nextIndex, nowIndex) {
+      if (nextIndex > nowIndex) {
+        if (nextIndex == 10 && nowIndex == 2) {
+          return "pre";
+        } else {
+          return "next";
+        }
+      } else {
+        if (nextIndex == 2 && nowIndex == 10) {
+          return "next";
+        } else {
+          return "pre";
+        }
+      }
+    },
+    // 换页是svg的颜色
     getTopColor() {
       if (this.index == 2) {
-        return '#fff';
+        return "#fff";
       } else if (this.index == 3) {
-        return 'rgb(109, 55, 151)';
+        return "rgb(109, 55, 151)";
       } else if (this.index == 4) {
         return "rgb(237, 62, 70)";
       } else if (this.index == 5) {
@@ -765,14 +766,15 @@ export default {
       } else if (this.index == 10) {
         return "#FC4380";
       } else {
-        return '#000'
+        return "#000";
       }
     },
+    // 换页时svg的颜色
     getBottomColor() {
       if (this.index == 2) {
-        return '#fff';
+        return "#fff";
       } else if (this.index == 3) {
-        return 'rgb(159, 122, 190)';
+        return "rgb(159, 122, 190)";
       } else if (this.index == 4) {
         return "rgb(255, 156, 156)";
       } else if (this.index == 5) {
@@ -789,8 +791,9 @@ export default {
         return "#F8A0CB";
       } else {
         return "#000";
-      } 
+      }
     },
+    // 获取浏览器
     getBrowser() {
       let UserAgent = navigator.userAgent.toLowerCase();
       let browser = null;
@@ -829,6 +832,7 @@ export default {
       }
       this.$store.state.browserName = browser;
     },
+    // 获取设备
     getEquipment() {
       if ($(window).width() <= 740) {
         this.$store.state.equipment = "phone";
