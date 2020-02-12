@@ -55,11 +55,11 @@ body {
     transition: all 0.5s;
     li {
       list-style: none;
-      overflow: hidden;
+      //overflow: hidden;
       background-size: auto 80%;
       background-position: center;
       background-repeat: no-repeat;
-      border-radius: 50%;
+      //border-radius: 50%;
     }
     li:nth-child(1) {
       background-image: url("./assets/前端.png");
@@ -83,10 +83,11 @@ body {
       background-image: url("./assets/设计.png");
     }
     li:hover {
-      background: #b2b2b2;
+      //background: #b2b2b2;
+      background: #fff;
     }
     li:hover span {
-      transform: translateX(0em);
+      transform: scale(1);
     }
   }
   .rocket {
@@ -166,22 +167,22 @@ body {
     }
     .group {
       top: 50%;
-      right: 20px;
+      left: 10px;
       margin-top: -7em;
-      width: 2.7em;
+      width: 4em;
       height: 14em;
-      font-size: 30px;
-      transform: translateX(30px);
+      font-size: 25px;
+      transform: translateX(-30px);
       li {
         list-style: none;
         height: 2em;
         text-align: center;
         span {
-          display: inline-block;
-          font-size: 0.6em;
-          line-height: 3.34em;
+          display: block;
+          font-size: 0.8em;
+          line-height: 2.5em;
           transition: all 0.3s;
-          transform: translateX(5em);
+          transform: scale(0);
         }
       }
     }
@@ -231,15 +232,14 @@ body {
       font-size: 13px;
     }
     .group {
-      bottom: 40px;
-      left: 50%;
-      margin-left: -7em;
-      height: 2.7em;
-      width: 14em;
+      right: 20px;
+      top: 50%;
+      margin-top: -7em;
+      width: 2.7em;
+      height: 14em;
       font-size: 30px;
-      transform: translateY(30px);
+      transform: translateX(30px);
       li {
-        display: inline-block;
         width: 2em;
         height: 2em;
         span {
@@ -249,7 +249,7 @@ body {
     }
     .groupShow {
       opacity: 1;
-      transform: translateY(0px);
+      transform: translateX(0px);
     }
     .rocket {
       bottom: 0;
@@ -333,7 +333,7 @@ body {
 }
 @keyframes svgConAnimation {
   0% {
-    transform: translateY(100%);
+    transform: translateY(99%);
   }
   100% {
     transform: translateY(-100%);
@@ -352,7 +352,7 @@ body {
 }
 @keyframes svgConAnimation2 {
   0% {
-    transform: rotate(180deg) translateY(100%);
+    transform: rotate(180deg) translateY(99%);
   }
   100% {
     transform: rotate(180deg) translateY(-100%);
@@ -436,7 +436,7 @@ body {
       </svg>
     </div>
     <homepage :class="{pageChoice:index==2}" @showHomepage="showHomepage" ref="homepage"></homepage>
-    <studio :class="{pageChoice:index==3}"></studio>
+    <studio :class="{pageChoice:index==3}" ref="studio"></studio>
     <front :class="{pageChoice:index==4}"></front>
     <end :class="{pageChoice:index==5}"></end>
     <datas :class="{pageChoice:index==6}"></datas>
@@ -445,7 +445,6 @@ body {
     <game :class="{pageChoice:index==9}"></game>
     <design :class="{pageChoice:index==10}"></design>
     <div
-      v-show="index != 3"
       class="scrollDown"
       :style="{color: index==2?'#707070':'#fff',opacity:scrollDownOpacity}"
     >向下滚动了解更多</div>
@@ -585,6 +584,9 @@ export default {
       } else {
         window.location.href = "http://www.cxkball.club/wap/QGManager";
       }
+    },
+    handleAnimation: function(anim) {
+      this.anim = anim;
     },
     // 主页动画
     showHomepage() {
@@ -727,7 +729,15 @@ export default {
         this.joinUs();
       } else if (clickFun == "playVideo()") {
         this.$refs.homepage.playVideo();
-      }
+      } else if (clickFun == "showImg(0)") {
+        this.$refs.studio.showImg(0);
+      } else if (clickFun == "showImg(1)") {
+        this.$refs.studio.showImg(1);
+      } else if (clickFun == "showImg(2)") {
+        this.$refs.studio.showImg(2);
+      } else if (clickFun == "closeImg()") {
+        this.$refs.studio.closeImg();
+      } 
     },
     // 换页方式（上一页还是下一页）
     getChangeWay(nextIndex, nowIndex) {
@@ -745,7 +755,7 @@ export default {
         }
       }
     },
-    // 换页是svg的颜色
+    // 换页时svg的颜色
     getTopColor() {
       if (this.index == 2) {
         return "#fff";

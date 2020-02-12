@@ -6,7 +6,7 @@
     width: 100%;
     height: 100vh;
     color: #000;
-    background-color: #fff;
+    background: #fff;
     .QGlogoStart {
       transform: translateY(0px);
     }
@@ -21,10 +21,10 @@
       margin-left: -187.5px;
       width: 375px;
       height: 112px;
-      background-image: url("../../assets/QGstudio@2x.png");
-      background-size: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
+      // background-image: url("../../assets/QGstudio@2x.png");
+      // background-size: 100%;
+      // background-position: center;
+      // background-repeat: no-repeat;
       transition: all 0.5s;
       //transform: translateY(150px);
     }
@@ -45,7 +45,7 @@
     width: 100%;
     height: 100vh;
     color: #000;
-    background-color: #fff;
+    background: #fff;
     .QGlogoStart {
       transform: translateY(0px);
     }
@@ -60,10 +60,10 @@
       margin-left: -187.5px;
       width: 375px;
       height: 112px;
-      background-image: url("../../assets/QGstudio@2x.png");
-      background-size: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
+      // background-image: url("../../assets/QGstudio@2x.png");
+      // background-size: 100%;
+      // background-position: center;
+      // background-repeat: no-repeat;
       transition: all 0.5s;
       //transform: translateY(150px);
     }
@@ -84,7 +84,7 @@
     width: 100%;
     height: 100vh;
     color: #000;
-    background-color: #fff;
+    background: #fff;
     .QGlogoStart {
       transform: translateY(0px);
     }
@@ -99,10 +99,10 @@
       margin-left: -108px;
       width: 216px;
       height: 66px;
-      background-image: url("../../assets/QGstudio@2x.png");
-      background-size: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
+      // background-image: url("../../assets/QGstudio@2x.png");
+      // background-size: 100%;
+      // background-position: center;
+      // background-repeat: no-repeat;
       transition: all 0.5s;
       //transform: translateY(150px);
     }
@@ -119,21 +119,22 @@
 </style>
 <template>
   <div class="homepage page">
-    <QGlogo :class="{QGlogoStart: !QGlogoShow, QGlogoEnd: QGlogoShow}"></QGlogo>
-    <div class="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></div>
-    <play v-show="playShow" ref="play"></play>
+    <QGlogo ref="QGlogo" :class="{QGlogoStart: !QGlogoShow, QGlogoEnd: QGlogoShow}"></QGlogo>
+    <!-- <div class="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></div> -->
+    <QGname ref="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></QGname>
+    <play ref="play"></play>
   </div>
 </template>
 
 <script>
 import QGlogo from "./QGlogo/QGlogo.vue";
+import QGname from "./QGname/QGname.vue"
 import play from "./play/play.vue";
 export default {
   data() {
     return {
       QGlogoShow: false,
       QGnameShow: false,
-      playShow: false
     };
   },
   methods: {
@@ -142,11 +143,12 @@ export default {
     }
   },
   mounted() {
+    this.$refs.QGlogo.play();
     setTimeout(() => {
       this.QGlogoShow = true;
       setTimeout(() => {
         this.QGnameShow = true;
-        this.playShow = true;
+        this.$refs.QGname.play();
         this.$refs.play.play();
         this.$emit("showHomepage");
       }, 500);
@@ -154,6 +156,7 @@ export default {
   },
   components: {
     QGlogo,
+    QGname,
     play
   }
 };
