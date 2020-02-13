@@ -20,10 +20,10 @@
 // 手机
 @media only screen and (max-width: 740px) {
   .QGlogo {
-    margin-top: -40px;
-    margin-left: -40px;
-    width: 80px;
-    height: 80px;
+    margin-top: -35px;
+    margin-left: -35px;
+    width: 70px;
+    height: 70px;
   }
 }
 .QGlogo {

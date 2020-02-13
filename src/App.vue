@@ -26,11 +26,17 @@ body {
   .toJoin {
     position: fixed;
     z-index: 300;
-    font-family: name;
     cursor: pointer;
     opacity: 0;
     transition: all 0.5s;
     transform: translateX(35px);
+  }
+  .click {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
   }
   .joinUsShow {
     opacity: 1;
@@ -157,8 +163,8 @@ body {
 @media only screen and (min-width: 1025px) {
   #app {
     .toJoin {
-      top: 15px;
-      right: 35px;
+      top: 10px;
+      right: 15px;
       font-size: 30px;
     }
     .scrollDown {
@@ -224,7 +230,7 @@ body {
   #app {
     .toJoin {
       top: 15px;
-      right: 35px;
+      right: 15px;
       font-size: 30px;
     }
     .scrollDown {
@@ -282,8 +288,8 @@ body {
 @media only screen and (max-width: 740px) {
   #app {
     .toJoin {
-      top: 5px;
-      right: 5px;
+      top: 10px;
+      right: 10px;
       font-size: 18px;
     }
     .scrollDown {
@@ -363,12 +369,11 @@ body {
 <template>
   <div id="app">
     <div
+      v-show="index!=11"
       class="toJoin"
-      click="joinUs()"
-      @click="joinUs()"
-      :style="{color: index<4?'#000':'#fff'}"
       :class="{'joinUsShow':homepageShow}"
-    >JOIN US</div>
+    ><joinUs/><div class="click" click="joinUs()"
+      @click="joinUs()"></div></div>
     <ul v-show="index==2" class="group" :class="{'groupShow':homepageShow}">
       <li @click="pageChange(4)" click="pageChange(4)">
         <span>前端</span>
@@ -402,7 +407,7 @@ body {
       />
       <div class="click" click="pageChange(2)" @click="pageChange(2)"></div>
     </div>
-    <div class="sidebar" :style="{opacity:index>3?1:0}">
+    <div class="sidebar" :style="{opacity:index>3&&index<11?1:0}">
       <span
         v-for="Index in 7"
         :key="Index"
@@ -444,7 +449,9 @@ body {
     <embedded :class="{pageChoice:index==8}"></embedded>
     <game :class="{pageChoice:index==9}"></game>
     <design :class="{pageChoice:index==10}"></design>
+    <endPage :class="{pageChoice:index==11}"></endPage>
     <div
+      v-show="index!=11"
       class="scrollDown"
       :style="{color: index==2?'#707070':'#fff',opacity:scrollDownOpacity}"
     >向下滚动了解更多</div>
@@ -461,9 +468,11 @@ import embedded from "@/components/embedded/embedded.vue";
 import datas from "@/components/datas/datas.vue";
 import game from "@/components/game/game.vue";
 import design from "@/components/design/design.vue";
+import endPage from "@/components/endPage/endPage.vue"; 
 import Lottie from "vue-lottie";
 import BackToTop from "@/assets/lottieJson/BackToTop.json";
 import util from "@/utils/util.js";
+import joinUs from "@/components/public/joinUs.vue";
 import $ from "jquery";
 
 export default {
@@ -477,6 +486,8 @@ export default {
     datas,
     game,
     design,
+    endPage,
+    joinUs,
     lottie: Lottie
   },
   data() {
@@ -610,9 +621,9 @@ export default {
       }
       let index = this.index;
       if (detail > 0) {
-        if (--index == 1) index = 10;
+        if (--index == 1) index = 11;
       } else if (detail < 0) {
-        if (++index == 11) index = 2;
+        if (++index == 12) index = 2;
       }
       this.pageChange(index);
       event.stopPropagation();
@@ -639,9 +650,9 @@ export default {
       let index = this.index;
       // alert(`${this.touchEndY - this.touchStartY}`);
       if (distance > 0) {
-        if (--index == 1) index = 10;
+        if (--index == 1) index = 11;
       } else {
-        if (++index == 11) index = 2;
+        if (++index == 12) index = 2;
       }
       this.pageChange(index);
       event.stopPropagation();
@@ -742,13 +753,13 @@ export default {
     // 换页方式（上一页还是下一页）
     getChangeWay(nextIndex, nowIndex) {
       if (nextIndex > nowIndex) {
-        if (nextIndex == 10 && nowIndex == 2) {
+        if (nextIndex == 11 && nowIndex == 2) {
           return "pre";
         } else {
           return "next";
         }
       } else {
-        if (nextIndex == 2 && nowIndex == 10) {
+        if (nextIndex == 2 && nowIndex == 11) {
           return "next";
         } else {
           return "pre";
@@ -775,8 +786,10 @@ export default {
         return "#7A69B9";
       } else if (this.index == 10) {
         return "#FC4380";
+      } else if (this.index == 11){
+        return "#3C3C48";
       } else {
-        return "#000";
+        return '#000'
       }
     },
     // 换页时svg的颜色
@@ -799,7 +812,9 @@ export default {
         return "#CFC9E5";
       } else if (this.index == 10) {
         return "#F8A0CB";
-      } else {
+      } else if (this.index == 11){
+        return "#161616";
+      } else{
         return "#000";
       }
     },

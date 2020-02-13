@@ -14,7 +14,7 @@
   }
   .introduce {
     top: 50%;
-    right: 1rem;
+    right: 1.5rem;
     width: 8rem;
     font-size: 0.4rem;
     transform: translateY(-50%);

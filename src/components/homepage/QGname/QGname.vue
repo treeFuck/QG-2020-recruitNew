@@ -11,16 +11,16 @@
 // ipad
 @media only screen and (max-width: 1024px) and (min-width: 741px) {
     .QGnameTop {
-        font-size: 30px;
+        font-size: 60px;
     }
     .QGnameBottom {
-        font-size: 10px;
+        font-size: 14px;
     }
 }
 // 手机
 @media only screen and (max-width: 740px) {
     .QGnameTop {
-        font-size: 30px;
+        font-size: 35px;
     }
     .QGnameBottom {
         font-size: 10px;
@@ -60,16 +60,16 @@
         <span class='letter'>大</span>
         <span class='letter'>学</span>
         <span class='letter'>生</span>
-        <span class='letter'>"</span>
-        <span class='letter'>小</span>
+        <!-- <span class='letter'></span> -->
+        <span class='letter'>"小</span>
         <span class='letter'>平</span>
         <span class='letter'>科</span>
         <span class='letter'>技</span>
         <span class='letter'>创</span>
         <span class='letter'>新</span>
         <span class='letter'>团</span>
-        <span class='letter'>队</span>
-        <span class='letter'>"</span>
+        <span class='letter'>队"</span>
+        <!-- <span class='letter'></span> -->
     </div>
   </div>
 </template>
