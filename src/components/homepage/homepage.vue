@@ -61,6 +61,10 @@
       top: 50%;
       width: 100%;
       transition: all 0.5s;
+      background-image: url(../../assets/QGstudio@2x.png);
+      background-size: auto 100%;
+      background-position: center;
+      background-repeat: no-repeat;
     }
     .QGnameStart {
       opacity: 0;
@@ -71,15 +75,15 @@
 <template>
   <div class="homepage page">
     <QGlogo ref="QGlogo" :class="{QGlogoStart: !QGlogoShow, QGlogoEnd: QGlogoShow}"></QGlogo>
-    <!-- <div class="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></div> -->
-    <QGname ref="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></QGname>
+    <div class="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></div>
+    <!-- <QGname ref="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></QGname> -->
     <play ref="play"></play>
   </div>
 </template>
 
 <script>
 import QGlogo from "./QGlogo/QGlogo.vue";
-import QGname from "./QGname/QGname.vue"
+// import QGname from "./QGname/QGname.vue"
 import play from "./play/play.vue";
 export default {
   data() {
@@ -98,19 +102,21 @@ export default {
       this.$refs.QGlogo.play();
       setTimeout(() => {
         this.QGlogoShow = true;
-        setTimeout(() => {
+        setTimeout(()=>{
           this.QGnameShow = true;
-          this.$refs.QGname.play();
-          this.$refs.play.play();
-          this.$emit("showHomepage");
-        }, 500);
+          window.requestAnimationFrame(()=>{
+            this.$emit("showHomepage");
+            this.$refs.play.play();
+            // this.$refs.QGname.play();
+          })
+        }, 500)
       }, 4000);
     }, 100)
     //window.requestAnimationFrame(()=>{})
   },
   components: {
     QGlogo,
-    QGname,
+    // QGname,
     play
   }
 };

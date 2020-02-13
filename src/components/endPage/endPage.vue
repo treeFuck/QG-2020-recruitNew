@@ -33,7 +33,7 @@
 @media only screen and (max-width: 740px) {
     .font1 {
         top: 25%;
-        font-size: 20px;
+        font-size: 25px;
     }
     .sign {
         top: 35%;
@@ -52,7 +52,7 @@
         width: 100%;
         text-align: center;
         transform: translateX(-50%);
-        font-family: Raleway, Verdana, Arial;
+        // font-family: Raleway, Verdana, Arial;
         color: transparent;
     }
     .sign {
@@ -83,7 +83,7 @@
     color: red;
     z-index: 2;
     filter: contrast(200%);
-    text-shadow: 2px 1px 0 red;
+    text-shadow: 0.05em 0 0 red;
     animation: move 0.95s infinite;
 }
 
@@ -97,7 +97,7 @@
     z-index: 3;
     color: cyan;
     filter: contrast(200%);
-    text-shadow: -2px -2px 0 cyan;
+    text-shadow: -0.05em -0.05em 0 cyan;
     mix-blend-mode: lighten;
     animation: move 1.1s infinite 0.2s;
 }

@@ -61,11 +61,9 @@ body {
     transition: all 0.5s;
     li {
       list-style: none;
-      //overflow: hidden;
       background-size: auto 80%;
       background-position: center;
       background-repeat: no-repeat;
-      //border-radius: 50%;
     }
     li:nth-child(1) {
       background-image: url("./assets/前端.png");
@@ -88,13 +86,6 @@ body {
     li:nth-child(7) {
       background-image: url("./assets/设计.png");
     }
-    li:hover {
-      //background: #b2b2b2;
-      background: #fff;
-    }
-    li:hover span {
-      transform: scale(1);
-    }
   }
   .rocket {
     position: fixed;
@@ -112,7 +103,7 @@ body {
   }
   .sidebar {
     position: fixed;
-    z-index: 300;
+    z-index: 200;
     transition: all 1s;
     span {
       display: block;
@@ -180,16 +171,23 @@ body {
       font-size: 25px;
       transform: translateX(-30px);
       li {
+        position:relative;
         list-style: none;
         height: 2em;
         text-align: center;
         span {
-          display: block;
+          display: inline-block;
           font-size: 0.8em;
           line-height: 2.5em;
           transition: all 0.3s;
           transform: scale(0);
         }
+      }
+      li:hover {
+        background: #fff;
+      }
+      li:hover span {
+        transform: scale(1);
       }
     }
     .groupShow {
@@ -369,7 +367,6 @@ body {
 <template>
   <div id="app">
     <div
-      v-show="index!=11"
       class="toJoin"
       :class="{'joinUsShow':homepageShow}"
     ><joinUs/><div class="click" click="joinUs()"
@@ -451,9 +448,8 @@ body {
     <design :class="{pageChoice:index==10}"></design>
     <endPage :class="{pageChoice:index==11}"></endPage>
     <div
-      v-show="index!=11"
       class="scrollDown"
-      :style="{color: index==2?'#707070':'#fff',opacity:scrollDownOpacity}"
+      :style="{color: index==2?'#707070':'#fff',opacity:index==11?0:scrollDownOpacity}"
     >向下滚动了解更多</div>
   </div>
 </template>
@@ -711,7 +707,7 @@ export default {
         this.$refs.path2.setAttribute("fill", this.getBottomColor());
         this.isMoving = false;
         this.rocketOpacity = 1;
-      }, 1820);
+      }, 2000);
       if (event) {
         event.stopPropagation();
       }

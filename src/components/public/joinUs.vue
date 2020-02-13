@@ -4,6 +4,13 @@
   .joinUs {
     width: 120px;
 	  height: 30px;
+    .path1 {
+      animation: path1Animation 2s infinite;
+    }
+    .path2 {
+      stroke-dasharray: 306 20;
+      animation: path2Animation 2s infinite;
+    }
   }
 }
 // ipad
@@ -11,6 +18,13 @@
   .joinUs {
     width: 120px;
 	  height: 30px;
+    .path1 {
+      animation: path1Animation 2s infinite;
+    }
+    .path2 {
+      stroke-dasharray: 306 20;
+      animation: path2Animation 2s infinite;
+    }
   }
 }
 // 手机
@@ -18,14 +32,15 @@
   .joinUs {
     width: 80px;
 	  height: 20px;
+    .path1 {
+      transform: translateX(2px) translateY(-5px);
+    }
+    .path2 {
+      stroke-dasharray: 306 20;
+      stroke-dashoffset: 233;
+    }
   }
-}
-.path1 {
-  animation: path1Animation 2s infinite;
-}
-.path2 {
-  stroke-dasharray: 306 20;
-  animation: path2Animation 2s infinite;
+  
 }
 @keyframes path1Animation {
   0% {
@@ -88,7 +103,7 @@ export default {
   },
   computed: {
     color: function() {
-      if(this.$store.state.index<3) {
+      if(this.$store.state.index<3 || this.$store.state.index == 11) {
         return '#000';
       } else {
         return '#fff';
