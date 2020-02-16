@@ -236,14 +236,15 @@ body {
       font-size: 13px;
     }
     .group {
-      right: 20px;
-      top: 50%;
-      margin-top: -7em;
-      width: 2.7em;
-      height: 14em;
+      bottom: 50px;
+      left: 50%;
+      margin-left: -7em;
+      height: 2.7em;
+      width: 14em;
       font-size: 30px;
-      transform: translateX(30px);
+      transform: translateY(30px);
       li {
+        display: inline-block;
         width: 2em;
         height: 2em;
         span {
@@ -253,7 +254,7 @@ body {
     }
     .groupShow {
       opacity: 1;
-      transform: translateX(0px);
+      transform: translateY(0px);
     }
     .rocket {
       bottom: 0;
@@ -569,8 +570,11 @@ export default {
     });
   },
   watch: {
-    "$store.state.equipment": (newVal, oldVal) => {
+    "$store.state.equipment": function(newVal, oldVal) {
       if (oldVal) {
+        if(this.$store.state.playVideo) {
+          return;
+        }
         console.log("当前设备:" + newVal);
         window.location.reload();
       }
@@ -736,6 +740,8 @@ export default {
         this.joinUs();
       } else if (clickFun == "playVideo()") {
         this.$refs.homepage.playVideo();
+      } else if (clickFun == "closeVideo()") {
+        this.$refs.homepage.closeVideo();
       } else if (clickFun == "showImg(0)") {
         this.$refs.studio.showImg(0);
       } else if (clickFun == "showImg(1)") {

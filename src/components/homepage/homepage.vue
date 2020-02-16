@@ -13,6 +13,16 @@
       opacity: 1;
       transform: translateY(50px);
     }
+    .videoCon {
+      padding: 20px;
+      left: 15vw;
+      width: 70vw;
+      .closeVideo {
+        top: 0px;
+        right: -50px;
+        width: 40px;
+      }
+    }
   }
 }
 // ipad
@@ -28,6 +38,16 @@
     .QGnameEnd {
       opacity: 1;
       transform: translateY(50px);
+    }
+    .videoCon {
+      left: 0;
+      width: 96vw;
+      padding: 2vw;
+      .closeVideo {
+        top: -45px;
+        right: 10px;
+        width: 35px;
+      }
     }
   }
 }
@@ -45,10 +65,19 @@
       opacity: 1;
       transform: translateY(25px);
     }
+    .videoCon {
+      left: 0;
+      width: 96vw;
+      padding: 2vw;
+      .closeVideo {
+        top: -40px;
+        right: 5px;
+        width: 30px;
+      }
+    }
   }
 }
   .homepage {
-    position: relative;
     width: 100%;
     height: 100vh;
     color: #000;
@@ -70,6 +99,19 @@
       opacity: 0;
       transform: translateY(70px);
     }
+    .videoCon {
+      position: absolute;
+      z-index: 1000;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 10px 0 #666;
+      .closeVideo {
+        position: absolute;
+        cursor: pointer;
+      }
+    }
   }
 </style>
 <template>
@@ -77,7 +119,11 @@
     <QGlogo ref="QGlogo" :class="{QGlogoStart: !QGlogoShow, QGlogoEnd: QGlogoShow}"></QGlogo>
     <div class="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></div>
     <!-- <QGname ref="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></QGname> -->
-    <play ref="play"></play>
+    <play @playVideo="playVideo" ref="play"></play>
+    <div class='videoCon' v-show="videoShow">
+      <img class="closeVideo" @click="closeVideo()" click="closeVideo()" src="@/assets/close.png" alt="关闭视频">
+      <video ref="video" controls="controls" class="video" width="100%" src="https://qg-oss-static.oss-cn-shenzhen.aliyuncs.com/2019-zhaoxin/img/rec_video.mp4" ></video>
+    </div>
   </div>
 </template>
 
@@ -90,12 +136,25 @@ export default {
     return {
       QGlogoShow: false,
       QGnameShow: false,
+      videoShow: false,
     };
   },
   methods: {
+    // playVideo() {
+    //   this.$refs.play.playVideo()
+    // },
     playVideo() {
-      this.$refs.play.playVideo()
-    }
+      this.videoShow = true;
+      this.$refs.video.play();
+      this.$store.state.playVideo = true;
+      event.stopPropagation();
+    },
+    closeVideo() {
+      this.videoShow = false;
+      this.$refs.video.pause();
+      this.$store.state.playVideo = false;
+      event.stopPropagation();
+    },
   },
   mounted() {
     setTimeout(()=>{
@@ -118,6 +177,13 @@ export default {
     QGlogo,
     // QGname,
     play
+  },
+  watch: {
+    "$store.state.index": function(newVal, oldVal) {
+      if (oldVal == 2 && newVal != 2) {
+        this.closeVideo();
+      }
+    }
   }
 };
 </script>

@@ -84,7 +84,8 @@ export default {
   data() {
     return {
       path1Show: false,
-      path2Show: false
+      path2Show: false,
+      
     };
   },
   computed: {
@@ -100,8 +101,9 @@ export default {
   },
   methods: {
     playVideo() {
-      alert("敬请期待");
-      event.stopPropagation();
+      // this.videoIndex = 9999;
+      // event.stopPropagation();
+      this.$emit('playVideo');
     },
     play() {
       this.path1Show = true;
