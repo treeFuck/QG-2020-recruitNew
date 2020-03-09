@@ -190,9 +190,9 @@ export default {
       joinUs() {
         event.stopPropagation();
         if (this.$store.state.equipment == "PC") {
-            window.location.href = "http://www.cxkball.club/web/QGManager";
+            window.location.href = "http://recruit.qgailab.com/web";
         } else {
-            window.location.href = "http://www.cxkball.club/wap/QGManager";
+            window.location.href = "http://recruit.qgailab.com/wap";
         }
     },
   }

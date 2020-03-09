@@ -1,12 +1,12 @@
 <style lang="scss">
 @font-face {
   font-family: name;
-  src: url(./assets/优设标题黑.ttf);
+  src: url(./assets/title.ttf);
 }
 
 @font-face {
   font-family: introduce;
-  src: url(./assets/思源黑体R.ttf);
+  src: url(./assets/intr.ttf);
 }
 * {
   padding: 0;
@@ -66,25 +66,25 @@ body {
       background-repeat: no-repeat;
     }
     li:nth-child(1) {
-      background-image: url("./assets/前端.png");
+      background-image: url("./assets/font.png");
     }
     li:nth-child(2) {
-      background-image: url("./assets/后台.png");
+      background-image: url("./assets/end.png");
     }
     li:nth-child(3) {
-      background-image: url("./assets/数据挖掘.png");
+      background-image: url("./assets/datas.png");
     }
     li:nth-child(4) {
-      background-image: url("./assets/移动.png");
+      background-image: url("./assets/mobile.png");
     }
     li:nth-child(5) {
-      background-image: url("./assets/嵌入式.png");
+      background-image: url("./assets/embedded.png");
     }
     li:nth-child(6) {
-      background-image: url("./assets/图形.png");
+      background-image: url("./assets/game.png");
     }
     li:nth-child(7) {
-      background-image: url("./assets/设计.png");
+      background-image: url("./assets/design.png");
     }
   }
   .rocket {
@@ -118,6 +118,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+
+    -webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+   -ms-backface-visibility: hidden;
+   backface-visibility: hidden;
+ 
+   -webkit-perspective: 1000;
+   -moz-perspective: 1000;
+   -ms-perspective: 1000;
+   perspective: 1000;
     .name {
       position: absolute;
       font-family: name;
@@ -141,12 +151,32 @@ body {
     //height: 100%;
     z-index: 300;
     transform: translateY(100%);
+
+    -webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+   -ms-backface-visibility: hidden;
+   backface-visibility: hidden;
+ 
+   -webkit-perspective: 1000;
+   -moz-perspective: 1000;
+   -ms-perspective: 1000;
+   perspective: 1000;
   }
   .svgCon2 {
     // svg容器
     //height: 100vh;
     z-index: 300;
     transform: rotate(180deg) translateY(100%);
+
+    -webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+   -ms-backface-visibility: hidden;
+   backface-visibility: hidden;
+ 
+   -webkit-perspective: 1000;
+   -moz-perspective: 1000;
+   -ms-perspective: 1000;
+   perspective: 1000;
   }
 }
 
@@ -217,9 +247,47 @@ body {
         line-height: 2.6rem;
       }
       .introduce {
-        font-size: 0.4rem;
+        // font-size: 0.4rem;
         line-height: 0.7rem;
       }
+    }
+  }
+  // 下一页动画
+  @keyframes prePageAnimation {
+    0% {
+      z-index: 300;
+      transform: translateY(0%);
+    }
+    100% {
+      z-index: 300;
+      transform: translateY(-200%);
+    }
+  }
+  @keyframes svgConAnimation {
+    0% {
+      transform: translateY(99%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  // 上一页动画
+  @keyframes prePageAnimation2 {
+    0% {
+      z-index: 300;
+      transform: translateY(0%);
+    }
+    100% {
+      z-index: 300;
+      transform: translateY(200%);
+    }
+  }
+  @keyframes svgConAnimation2 {
+    0% {
+      transform: rotate(180deg) translateY(99%);
+    }
+    100% {
+      transform: rotate(180deg) translateY(-100%);
     }
   }
 }
@@ -282,6 +350,45 @@ body {
       }
     }
   }
+  // 下一页动画
+  @keyframes prePageAnimation {
+    0% {
+      z-index: 300;
+      //transform: translateY(0%);
+      transform: translate3d(0, 0%, 0);
+    }
+    100% {
+      z-index: 300;
+      transform: translate3d(0, -200%, 0);
+    }
+  }
+  @keyframes svgConAnimation {
+    0% {
+      transform: translate3d(0, 99%, 0);
+    }
+    100% {
+      transform: translate3d(0, -100%, 0);
+    }
+  }
+  // 上一页动画
+  @keyframes prePageAnimation2 {
+    0% {
+      z-index: 300;
+      transform: translate3d(0, 0%, 0);
+    }
+    100% {
+      z-index: 300;
+      transform: translate3d(0, 200%, 0);
+    }
+  }
+  @keyframes svgConAnimation2 {
+    0% {
+      transform: rotate(180deg) translate3d(0, 99%, 0);
+    }
+    100% {
+      transform: rotate(180deg) translate3d(0, -100%, 0);
+    }
+  }
 }
 // 手机
 @media only screen and (max-width: 740px) {
@@ -292,7 +399,7 @@ body {
       font-size: 18px;
     }
     .scrollDown {
-      bottom: 5px;
+      bottom: 15px;
       font-size: 10px;
     }
     .group {
@@ -324,45 +431,47 @@ body {
       }
     }
   }
+  // 下一页动画
+  @keyframes prePageAnimation {
+    0% {
+      z-index: 300;
+      //transform: translateY(0%);
+      transform: translate3d(0, 0%, 0);
+    }
+    100% {
+      z-index: 300;
+      transform: translate3d(0, -200%, 0);
+    }
+  }
+  @keyframes svgConAnimation {
+    0% {
+      transform: translate3d(0, 99%, 0);
+    }
+    100% {
+      transform: translate3d(0, -100%, 0);
+    }
+  }
+  // 上一页动画
+  @keyframes prePageAnimation2 {
+    0% {
+      z-index: 300;
+      transform: translate3d(0, 0%, 0);
+    }
+    100% {
+      z-index: 300;
+      transform: translate3d(0, 200%, 0);
+    }
+  }
+  @keyframes svgConAnimation2 {
+    0% {
+      transform: rotate(180deg) translate3d(0, 99%, 0);
+    }
+    100% {
+      transform: rotate(180deg) translate3d(0, -100%, 0);
+    }
+  }
 }
-// 下一页动画
-@keyframes prePageAnimation {
-  0% {
-    z-index: 300;
-    transform: translateY(0%);
-  }
-  100% {
-    z-index: 300;
-    transform: translateY(-200%);
-  }
-}
-@keyframes svgConAnimation {
-  0% {
-    transform: translateY(99%);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-// 上一页动画
-@keyframes prePageAnimation2 {
-  0% {
-    z-index: 300;
-    transform: translateY(0%);
-  }
-  100% {
-    z-index: 300;
-    transform: translateY(200%);
-  }
-}
-@keyframes svgConAnimation2 {
-  0% {
-    transform: rotate(180deg) translateY(99%);
-  }
-  100% {
-    transform: rotate(180deg) translateY(-100%);
-  }
-}
+
 </style>
 
 <template>
@@ -395,7 +504,7 @@ body {
         <span>设计</span>
       </li>
     </ul>
-    <div v-show="index!=2" class="rocket" :style="{opacity:rocketOpacity}">
+    <div   v-show="index!=2" class="rocket" :style="{opacity:rocketOpacity}">
       <lottie
         class="lottie"
         :options="defaultOptions"
@@ -438,16 +547,16 @@ body {
         <path ref="path2" fill="#fff" />
       </svg>
     </div>
-    <homepage :class="{pageChoice:index==2}" @showHomepage="showHomepage" ref="homepage"></homepage>
-    <studio :class="{pageChoice:index==3}" ref="studio"></studio>
-    <front :class="{pageChoice:index==4}"></front>
-    <end :class="{pageChoice:index==5}"></end>
-    <datas :class="{pageChoice:index==6}"></datas>
-    <mobile :class="{pageChoice:index==7}"></mobile>
-    <embedded :class="{pageChoice:index==8}"></embedded>
-    <game :class="{pageChoice:index==9}"></game>
-    <design :class="{pageChoice:index==10}"></design>
-    <endPage :class="{pageChoice:index==11}"></endPage>
+    <homepage class="pageChoice"  @showHomepage="showHomepage" ref="homepage"></homepage>
+    <studio  ref="studio"></studio>
+    <front ></front>
+    <end ></end>
+    <datas ></datas>
+    <mobile ></mobile>
+    <embedded ></embedded>
+    <game ></game>
+    <design ></design>
+    <endPage ></endPage>
     <div
       class="scrollDown"
       :style="{color: index==2?'#707070':'#fff',opacity:index==11?0:scrollDownOpacity}"
@@ -591,9 +700,9 @@ export default {
     joinUs() {
       event.stopPropagation();
       if (this.$store.state.equipment == "PC") {
-        window.location.href = "http://www.cxkball.club/web/QGManager";
+        window.location.href = "http://recruit.qgailab.com/web";
       } else {
-        window.location.href = "http://www.cxkball.club/wap/QGManager";
+        window.location.href = "http://recruit.qgailab.com/wap";
       }
     },
     handleAnimation: function(anim) {
@@ -667,6 +776,9 @@ export default {
       }
       // 初始化
       this.isMoving = true;
+      setTimeout(()=>{
+        this.isMoving = false;
+      }, 2200)
       let nowIndex = this.index;
       this.index = nextIndex;
       let prePage = document.getElementsByClassName("page")[nowIndex];
@@ -694,6 +806,8 @@ export default {
         }
         window.requestAnimationFrame(()=>{this.$refs.path2.setAttribute("d", this.endD)})
       }
+      prePage.classList.remove('pageChoice');
+      nowPage.classList.add('pageChoice');
       this.rocketOpacity = 0;
       // 换页动画结束，样式复位
       setTimeout(() => {
@@ -709,9 +823,8 @@ export default {
         }
         this.$refs.path1.setAttribute("fill", this.getTopColor());
         this.$refs.path2.setAttribute("fill", this.getBottomColor());
-        this.isMoving = false;
         this.rocketOpacity = 1;
-      }, 2000);
+      }, 1800);
       if (event) {
         event.stopPropagation();
       }

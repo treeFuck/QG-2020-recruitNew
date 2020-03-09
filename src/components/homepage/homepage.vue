@@ -122,7 +122,7 @@
     <play @playVideo="playVideo" ref="play"></play>
     <div class='videoCon' v-show="videoShow">
       <img class="closeVideo" @click="closeVideo()" click="closeVideo()" src="@/assets/close.png" alt="关闭视频">
-      <video ref="video" controls="controls" class="video" width="100%" src="https://qg-oss-static.oss-cn-shenzhen.aliyuncs.com/2019-zhaoxin/img/rec_video.mp4" ></video>
+      <video ref="video" controls="controls" class="video" width="100%" src="https://qg-oss-static.oss-cn-shenzhen.aliyuncs.com/2020-rec/videos/2020_video.mp4" ></video>
     </div>
   </div>
 </template>

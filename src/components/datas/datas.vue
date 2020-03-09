@@ -11,9 +11,10 @@
     width: 8rem;
   }
   .introduce {
-    top: 50%;
-    right: 2.6rem;
-    width: 14rem;
+    top: 52%;
+    right: 2rem;
+    font-size: 0.38rem;
+    width: 15.2rem;
     transform: translateY(-50%);
   }
 }
@@ -67,10 +68,12 @@
   <div class="datas page">
     <bg :index='6' :floatIconUrl="floatIconUrl"></bg>
     <div class="name">数据挖掘</div>
-    <img class="bgLogo" src="@/assets/数据挖掘@2x.png" />
+    <img class="bgLogo" src="@/assets/datas@2x.png" />
     <div
       class="introduce"
-    >数据挖掘组，研究方向为大数据的存储、获取与运算以及机器学习的算法，是与当下流行的人工智能最相关的组。小组以机器学习的基本理论，使用数据分析库进行数据科学的研究和实践，利用Linux下的Hadoop、Spark等框架进行大数据的存储和运算。</div>
+    >
+    <p>数据挖掘组，研究方向为大数据的处理与挖掘以及机器学习的算法，是与当下流行的人工智能最相关的组。小组以机器学习的基本理论，使用Python数据分析库等进行数据科学的研究和实践，利用Linux下的Hadoop、Spark等框架进行大数据的处理和挖掘。</p>
+    <p>在华为大数据平台支持下，在团队老师辛勤指导下，与国内数据挖掘领域的顶尖教授合作中，小组遇到成立以来的最大机遇，小组成员积极参赛获取大奖并研究各种学术难题努力发表高水平论文。</p></div>
   </div>
 </template>
 

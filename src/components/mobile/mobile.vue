@@ -13,7 +13,7 @@
     width: 5.5rem;
   }
   .introduce {
-    top: 50%;
+    top: 55%;
     left: 2.25rem;
     width: 8.5rem;
     font-size: 0.4rem;
@@ -70,8 +70,10 @@
     <div class="mobile page">
       <bg :index="7" :floatIconUrl="floatIconUrl"></bg>
       <div class="name">移动</div>
-      <img class="bgLogo" src="@/assets/移动@2x.png" />
-      <div class="introduce">智能手机应用开发小组，简称移动组。小组在结构上前前后后经历了三次变革，主攻方向从Android应用/游戏开发变为Android应用/后台开发再到现在的纯Android应用开发。我们与各大中小型企业、创业公司保持着紧密的合作，国内最早一批手机卡牌类游戏就出自我们之手，并被ChinaJoy邀请参会。</div>
+      <img class="bgLogo" src="@/assets/mobile@2x.png" />
+      <div class="introduce">
+        <p>移动组，主攻方向为基于Android系统的应用开发，是与用户联系最密切的部分。</p>
+        <p>我们一直致力于开发出极具特色并满足用户多种多样需求的APP，并紧随潮流，能够灵活使用当前主流框架。学习研究如何以多种多样的形式和更优的UI界面为用户呈现数据，同时为用户带来更好的使用体验。</p></div>
     </div>
 </template>
 

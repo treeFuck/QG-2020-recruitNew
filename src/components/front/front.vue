@@ -12,8 +12,9 @@
   }
   .introduce {
     top: 50%;
-    right: 2.95rem;
-    width: 13.3rem;
+    right: 2.6rem;
+    width: 14.2rem;
+    font-size: 0.4rem;
     transform: translateY(-50%);
   }
 }
@@ -66,10 +67,11 @@
   <div class="front page">
     <bg :index="4" :floatIconUrl="floatIconUrl"></bg>
     <div class="name">前端</div>
-    <img class="bgLogo" src="@/assets/前端@2x.png" />
+    <img class="bgLogo" src="@/assets/font@2x.png" />
     <div
       class="introduce"
-    >前端在网络开发中属于呈现给用户的部分，最具有代表性的莫过于传统的网页。前端组一直紧随最前沿的技术脚步，秉承着用户体验至上的原则，完成用户的需求。前端发展至今天，所能完成的任务可不仅仅于此，前端开发者探索的脚步从未停止，我们可以用Node.js进行高性能后端开发。我们创造出挑战原生APP地位的webapp小程序，更可以开发桌面级应用。</div>
+    ><p>前端在网络开发中属于呈现给用户的部分，最具有代表性的莫过于传统的网页。我们创造出挑战原生APP地位的webapp小程序，更可以开发桌面级应用。</p>
+    <p>同时，框架的使用让越来越复杂的View层变得容易处理，模块的规范化也提高了开发效率......直至今天，前端所能完成的任务可不仅仅于此，我们还可以用Node.js进行高性能后端开发。紧随最前沿的技术脚步，秉承用户体验至上的原则，我们，从未止步。</p></div>
   </div>
 </template>
 

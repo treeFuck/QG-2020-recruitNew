@@ -1,7 +1,7 @@
 <style lang="scss" scoped>
 // PC
 @media only screen and (min-width: 1025px) {
-    .name {
+  .name {
     top: 0;
     left: 1.4rem;
     font-size: 2rem;
@@ -60,19 +60,22 @@
 }
 .design {
   //background-color: #FDBDDC;
-  background: linear-gradient(to top, #FC4380, #F8A0CB);
+  background: linear-gradient(to top, #fc4380, #f8a0cb);
   .bg {
     z-index: 0;
   }
 }
 </style>
 <template>
-    <div class="design page">
-      <bg :index="10" :floatIconUrl="floatIconUrl"></bg>
-      <div class="name">设计</div>
-      <img class="bgLogo" src="@/assets/设计@2x.png" />
-      <div class="introduce">设计组的主要研究方向是手机游戏和网页的界面设计及交互，游戏原画设计以及平面设计。<p>我们旨在锻炼成员的创新能力、创意思想，培养成员的视觉设计和交互设计能力。除此之外，设计组也在着手3D模型的设计以及3D打印机的使用，产出的智能打印机和智能头盔已经斩获多个奖项，更是在挑战杯校赛中协助取得特等奖、一等奖的好成绩。</p></div>
+  <div class="design page">
+    <bg :index="10" :floatIconUrl="floatIconUrl"></bg>
+    <div class="name">设计</div>
+    <img class="bgLogo" src="@/assets/desgin@2x.png" />
+    <div class="introduce">
+      <p>设计组的主要研究方向是安卓App、小程序和网页的界面设计及交互与平面设计。我们旨在培养成员的视觉设计和交互设计能力。</p>
+      <p>除此之外，设计组也着手于3D模型设计的研究，并且在各项赛事中协助取得许多好成绩。产出的智能打印机、智能头盔等产品已经斩获多个奖项。</p>
     </div>
+  </div>
 </template>
 
 <script>
@@ -84,8 +87,8 @@ export default {
   },
   data() {
     return {
-      floatIconUrl: designBg,
-    }
+      floatIconUrl: designBg
+    };
   }
 };
 </script>
