@@ -63,11 +63,11 @@
 @keyframes bounce {
   0% {
     transform: translate3d(0, 0, 0);
-    text-shadow: rgba(255, 255, 255, 0.4) 0 0 0.05em;
+    text-shadow: rgba(1, 1, 1, 0.2) 0 0 0.05em;
   }
   100% {
     transform: translate3d(0, -0.6em, 0);
-    text-shadow: rgba(255, 255, 255, 0.4) 0 1em 0.35em;
+    text-shadow: rgba(1, 1, 1, 0.2) 0 1em 0.35em;
   }
 }
 </style>

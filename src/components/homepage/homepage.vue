@@ -13,6 +13,9 @@
       opacity: 1;
       transform: translateY(50px);
     }
+    .playCon {
+      transform: translateY(200px) translateX(-50%);
+    }
     .videoCon {
       padding: 20px;
       left: 15vw;
@@ -38,6 +41,9 @@
     .QGnameEnd {
       opacity: 1;
       transform: translateY(50px);
+    }
+    .playCon {
+      transform: translateY(180px) translateX(-50%);
     }
     .videoCon {
       left: 0;
@@ -65,9 +71,12 @@
       opacity: 1;
       transform: translateY(25px);
     }
+    .playCon {
+      transform: translateY(140px) translateX(-50%);
+    }
     .videoCon {
       left: 0;
-      width: 96vw;
+      width: 100vw;
       padding: 2vw;
       .closeVideo {
         top: -40px;
@@ -99,6 +108,12 @@
       opacity: 0;
       transform: translateY(70px);
     }
+    .playCon{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 400;
+    }
     .videoCon {
       position: absolute;
       z-index: 1000;
@@ -119,7 +134,11 @@
     <QGlogo ref="QGlogo" :class="{QGlogoStart: !QGlogoShow, QGlogoEnd: QGlogoShow}"></QGlogo>
     <div class="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></div>
     <!-- <QGname ref="QGname" :class="{QGnameStart: !QGnameShow, QGnameEnd: QGnameShow}"></QGname> -->
-    <play @playVideo="playVideo" ref="play"></play>
+    <div class="playCon">
+      <Poptip v-model="playTip" trigger="hover"  placement="bottom" content="点击播放视频" style="text-align:center">
+        <play @playVideo="playVideo" ref="play"></play>
+      </Poptip>
+    </div>
     <div class='videoCon' v-show="videoShow">
       <img class="closeVideo" @click="closeVideo()" click="closeVideo()" src="@/assets/close.png" alt="关闭视频">
       <video ref="video" controls="controls" class="video" width="100%" src="https://qg-oss-static.oss-cn-shenzhen.aliyuncs.com/2020-rec/videos/2020_video.mp4" ></video>
@@ -137,6 +156,7 @@ export default {
       QGlogoShow: false,
       QGnameShow: false,
       videoShow: false,
+      playTip: false
     };
   },
   methods: {
@@ -144,6 +164,10 @@ export default {
     //   this.$refs.play.playVideo()
     // },
     playVideo() {
+      if(this.$store.state.equipment != "PC") {
+        window.location.href = "http://recruit.qgailab.com/static";
+        return;
+      }
       this.videoShow = true;
       this.$refs.video.play();
       this.$store.state.playVideo = true;
@@ -166,6 +190,10 @@ export default {
           window.requestAnimationFrame(()=>{
             this.$emit("showHomepage");
             this.$refs.play.play();
+            this.playTip = true;
+            setTimeout(()=>{
+              this.playTip = false;
+            }, 2000)
             // this.$refs.QGname.play();
           })
         }, 500)
@@ -178,12 +206,12 @@ export default {
     // QGname,
     play
   },
-  watch: {
-    "$store.state.index": function(newVal, oldVal) {
-      if (oldVal == 2 && newVal != 2) {
-        this.closeVideo();
-      }
-    }
-  }
+  // watch: {
+  //   "$store.state.index": function(newVal, oldVal) {
+  //     if (oldVal == 2 && newVal != 2) {
+  //       this.closeVideo();
+  //     }
+  //   }
+  // }
 };
 </script>

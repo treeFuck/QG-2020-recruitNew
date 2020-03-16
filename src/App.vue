@@ -659,12 +659,12 @@ export default {
       this.eventLock = false;
     }, 4600);
     // 初始化事件
-    if (this.$store.state.browserName === "firefox") {
-      util.addHandler(document, "DOMMouseScroll", this.scrollChangePage);
-    } else {
-      util.addHandler(document, "mousewheel", this.scrollChangePage);
-    }
     let app = document.getElementById("app");
+    if (this.$store.state.browserName === "firefox") {
+      util.addHandler(app, "DOMMouseScroll", this.scrollChangePage);
+    } else {
+      util.addHandler(app, "mousewheel", this.scrollChangePage);
+    }
     util.addHandler(app, "touchstart", event => {
       event.preventDefault();
       this.touchStartY = event.changedTouches[0].pageY;
@@ -677,6 +677,10 @@ export default {
     util.addHandler(window, "resize", () => {
       this.getEquipment();
     });
+    console.log("你好，同学！");
+    console.log("这里是QG Studio from GDUT");
+    console.log("前端组期待你的加入，祝你好运！");
+    console.log("No Quests, No Gains!");
   },
   watch: {
     "$store.state.equipment": function(newVal, oldVal) {
@@ -684,18 +688,23 @@ export default {
         if(this.$store.state.playVideo) {
           return;
         }
-        console.log("当前设备:" + newVal);
+        // console.log("当前设备:" + newVal);
         window.location.reload();
       }
     },
     index: function(newVal, oldVal) {
       if (oldVal) {
         this.$store.state.index = newVal;
-        console.log(`当前在第 ${newVal} 页`);
+        // console.log(`当前在第 ${newVal} 页`);
       }
     }
   },
   methods: {
+    checkFull(){
+　　　　var isFull = document.fullscreenEnabled || window.fullScreen || document.webkitIsFullScreen || document.msFullscreenEnabled;
+　　　　if(isFull === undefined) isFull = false;
+　　　　return isFull;
+    },
     // 跳转到报名表
     joinUs() {
       event.stopPropagation();
@@ -749,7 +758,7 @@ export default {
       let distance = this.touchEndY - this.touchStartY;
       if (distance < 50 && distance > -50) {
         let clickFun = event.target.getAttribute("click");
-        console.log(clickFun);
+        // console.log(clickFun);
         if (clickFun) {
           this.clickFun(clickFun);
         }
@@ -772,6 +781,9 @@ export default {
         return;
       }
       if (this.isMoving) {
+        return;
+      }
+      if(this.$store.state.playVideo) {
         return;
       }
       // 初始化
@@ -863,7 +875,15 @@ export default {
         this.$refs.studio.showImg(2);
       } else if (clickFun == "closeImg()") {
         this.$refs.studio.closeImg();
-      } 
+      } else if (clickFun == 'changeFontShow(0)') {
+        this.$refs.studio.changeFontShow(0)
+      } else if (clickFun == 'changeFontShow(1)') {
+        this.$refs.studio.changeFontShow(1)
+      } else if (clickFun == 'changeFontShow(2)') {
+        this.$refs.studio.changeFontShow(2)
+      } else if (clickFun == 'changeFontShow(3)') {
+        this.$refs.studio.changeFontShow(3)
+      }
     },
     // 换页方式（上一页还是下一页）
     getChangeWay(nextIndex, nowIndex) {
