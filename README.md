@@ -216,7 +216,7 @@ module.exports = {
     },
     productionSourceMap: false,
     // publicPath: './',
-    publicPath: 'https://qg-oss-static.oss-cn-shenzhen.xxx.com/data/',
+    publicPath: 'https://xxx.oss-cn-shenzhen.xxx.com/data/',
 
   configureWebpack: config => {
     let webpackAliyunOss = [
